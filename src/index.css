@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* manrope-300 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 300;
+  src:url('../src/assets/fonts/Manrope-Light.ttf') format('truetype')
+}
+/* manrope-regular - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  src:url('../src/assets/fonts/Manrope-Regular.ttf') format('truetype')
+}
+/* manrope-500 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  src:url('../src/assets/fonts/Manrope-Medium.ttf') format('truetype')
+}
+/* manrope-600 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  src:url('../src/assets/fonts/Manrope-SemiBold.ttf') format('truetype')
+}
+/* manrope-700 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  src:url('../src/assets/fonts/Manrope-Bold.ttf') format('truetype')
+}
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.container{
+  margin: 0 auto !important;
+  width: 100%;
+}
+li{
+  list-style-type: none;
+}
+@media only screen and (min-width:360px){
+  .container{
+    max-width: 320px;
+  }
+}
+@media only screen and (min-width:576px){
+  .container{
+    max-width: 540px;
+  }
+}
+@media only screen and (min-width:768px){
+  .container{
+    max-width: 720px;
+  }
+}
+@media only screen and (min-width:960px){
+  .container{
+    max-width: 920px;
+  }
+}
+@media only screen and (min-width:1024px){
+  .container{
+    max-width: 984px;
+  }
+}
+@media only screen and (min-width:1200px){
+  .container{
+    max-width: 1160px;
+  }
+}
