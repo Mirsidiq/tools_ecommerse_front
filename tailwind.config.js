@@ -26,6 +26,10 @@ export default {
         'normal':['16px','24px'],
         'title':['34px','44px'],
         'inner':['18px','25px']
+      },
+      spacing:{
+        'vh':'100vh',
+        'vw':'100vw'
       }
     },
   },

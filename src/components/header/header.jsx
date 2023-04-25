@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./header.css"
 import location from "../../assets/img/location.svg";
 import toggleLogo from "../../assets/img/header-toggle.png";
@@ -8,21 +9,64 @@ import searchMobile from "../../assets/img/search-logo.svg"
 import basketLogo from "../../assets/img/basket.svg"
 import userLogo from "../../assets/img/user.svg"
 import cubeLogo from "../../assets/img/cube.svg"
+import xmark from "../../assets/img/xmark.png"
 const Header = () => {
+  const [toggle,setToggle]=useState(false)
   return (
     <>
       <header className="header">
         <div className="header-top py-2">
           <div className="container">
-            <div className="header-top__mobile flex justify-between items-center md:hidden">
-            <div className="header-top__mobile__toggle">
-              <img src={toggleLogo} alt="header top toggle logo" />
+            <div className="header-top__mobile flex justify-between items-center relative md:hidden">
+            <div className="header-top__mobile__toggle" onClick={()=>setToggle(!toggle)}>
+              <img src={ toggle ? xmark :toggleLogo} alt="header top toggle logo" />
             </div>
             <div className="header-top__mobile__logo mx-3">
               <img src={mobileLogo} alt="header top toggle logo" />
             </div>
             <div className="header-top__mobile__basket">
               <img src={mobileBasket} alt="header top toggle logo" />
+            </div>
+            <div className={`header-top__mobile__menu ${ toggle ? "header-top__mobile__menu-active" :""} py-11 absolute w-full overflow-auto`}>
+              <div className="mobile-line w-full bg-light"></div>
+            <div className="header__catalog__btn bg-primary flex items-center justify-center mt-3 w-full lg:ms-auto">
+                  <div className="toggle__lines relative">
+                    <span className="toggle__line w-4/12"></span>
+                    <span className="toggle__line w-10/12"></span>
+                    <span className="toggle__line w-8/12"></span>
+                  </div>
+                  <span className="header__catalog__txt font-serif text-normal ms-2 font-medium">
+                  Каталог
+                  </span>
+                </div>
+            <div className="header-user__action w-full flex items-center justify-center my-3">
+                    <img src={userLogo} alt="user avatar" />
+                    <span className="header-user__action__txt text-black font-medium">Профиль</span>
+                  </div>
+                  <div className="header-user__action w-full flex items-center justify-center">
+                    <img src={cubeLogo} alt="order logo" />
+                    <span className="header-user__action__txt text-black font-medium">Заказы</span>
+                  </div>
+                  <div className="mobile-line w-full bg-light my-3"></div>
+                  <ul className="header-bottom__list block py-3 w-full">
+                <li className="header-bottom__item"><a href="#" className="header-bottom__link text-normal font-serif text-black font-medium">Акции</a></li>
+                <li className="header-bottom__item my-3"><a href="#" className="header-bottom__link text-normal font-serif text-black font-medium">Строительные материалы</a></li>
+                <li className="header-bottom__item my-3"><a href="#" className="header-bottom__link text-normal font-serif text-black font-medium">Керамическая плитка</a></li>
+                <li className="header-bottom__item my-3"><a href="#" className="header-bottom__link text-normal font-serif text-black font-medium">Краски</a></li>
+                <li className="header-bottom__item my-3"><a href="#" className="header-bottom__link text-normal font-serif text-black font-medium">Сантехника</a></li>
+                <li className="header-bottom__item my-3"><a href="#" className="header-bottom__link text-normal font-serif text-black font-medium">Напольные покрытия</a></li>
+                <li className="header-bottom__item my-3"><a href="#" className="header-bottom__link text-normal font-serif text-black font-medium">Инструменты</a></li>
+                <li className="header-bottom__item my-3"><a href="#" className="header-bottom__link text-normal font-serif text-black font-medium">Обои</a></li>
+                <li className="header-bottom__item my-3"><a href="#" className="header-bottom__link text-normal font-serif text-black font-medium">Окна</a></li>
+              </ul>
+              <div className="mobile-line w-full bg-light my-3"></div>
+            <ul className="header-top__list">
+          <li className="header-top__nav__item"><a href="#" className="header-top__nav__link text-normal font-serif">Бренды</a></li>
+          <li className="header-top__nav__item ms-0 mt-3"><a href="#" className="header-top__nav__link text-normal font-serif">Доставка</a></li>
+          <li className="header-top__nav__item ms-0 mt-3"><a href="#" className="header-top__nav__link text-normal font-serif">Возврат</a></li>
+          <li className="header-top__nav__item ms-0 mt-3"><a href="#" className="header-top__nav__link text-normal font-serif">Документация</a></li>
+          <li className="header-top__nav__item ms-0 mt-3"><a href="#" className="header-top__nav__link text-normal font-serif">Контакты</a></li>
+          </ul>
             </div>
             </div>
             <div className="header-top__tablet hidden md:flex justify-between items-center">
@@ -40,17 +84,6 @@ const Header = () => {
           </ul>
           </nav>
             </div>
-            {/* <div className="header-top__location hidden md:visible md:flex">
-        <img src={location} alt="a location" />
-        <span className="text-normal ms-4 font-serif">Москва</span>
-      </div>
-      <nav className="header-top__nav flex justify-between">
-          <li className="header-top__nav__item"><a href="#" className="header-top__nav__link text-normal font-serif">Бренды</a></li>
-          <li className="header-top__nav__item ms-6"><a href="#" className="header-top__nav__link text-normal font-serif">Доставка</a></li>
-          <li className="header-top__nav__item ms-6"><a href="#" className="header-top__nav__link text-normal font-serif">Возврат</a></li>
-          <li className="header-top__nav__item ms-6"><a href="#" className="header-top__nav__link text-normal font-serif">Документация</a></li>
-          <li className="header-top__nav__item ms-6"><a href="#" className="header-top__nav__link text-normal font-serif">Контакты</a></li>
-</nav>*/}
           </div>
         </div>
         <div className="header-middle">
@@ -101,9 +134,9 @@ const Header = () => {
             </form>
           </div>
        </div>
-        <div className="header-bottom-actions py-3">
+        <div className="header-bottom-actions">
           <div className="container">
-              <ul className="header-bottom__list hidden w-full h-6 lg:flex overflow-x-auto">
+              <ul className="header-bottom__list py-3 w-full">
                 <li className="header-bottom__item"><a href="#" className="header-bottom__link text-normal font-serif text-black font-medium">Акции</a></li>
                 <li className="header-bottom__item"><a href="#" className="header-bottom__link text-normal font-serif text-black font-medium">Строительные материалы</a></li>
                 <li className="header-bottom__item"><a href="#" className="header-bottom__link text-normal font-serif text-black font-medium">Керамическая плитка</a></li>
