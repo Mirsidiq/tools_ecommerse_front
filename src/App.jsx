@@ -1,11 +1,10 @@
-import Button from "./components/button/button"
 import Header from "./components/header/header"
-
+import Hero from "./pages/hero/hero"
 function App() {
   return (
     <>
     <Header/>
-     {/* <Button>Mirsidiq</Button> */}
+    <Hero/>
     </>
   )
 }
