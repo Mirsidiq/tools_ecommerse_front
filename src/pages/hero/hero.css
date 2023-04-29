@@ -89,7 +89,19 @@
 .discount-card__btn{
   width:100%;
 }
-@media only screen and (max-width:1440px){
+.popular-category{
+  background-color: #F6F6F6;
+}
+.popular-product{
+  border:1px solid #E8E9EA;
+}
+.popular-product__header{
+  border-bottom: 1px solid #E8E9EA;
+}
+.popular-product__btn{
+  width: 100%;
+}
+@media only screen and (min-width:1200px){
   .discount__slider{
     display: none;
   }
@@ -213,5 +225,8 @@
   }
   .discount__slider{
     display: none;
+  }
+  .popular-product__btn{
+    padding: 12px 23px !important;
   }
 }

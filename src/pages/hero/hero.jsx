@@ -11,6 +11,9 @@ import discountMobile from "../../assets/img/discount-img__mobile.png";
 import discountTablet from "../../assets/img/discount-img__tablet.png";
 import discountLaptop from "../../assets/img/discount-img__laptop.png";
 import discountDesktop from "../../assets/img/discount-img.png";
+import popularMobile from "../../assets/img/popular-product__mobile.png";
+import popularDesktop from "../../assets/img/popular-product.png";
+import categoryImg from "../../assets/img/category-img.png";
 import { useRef, useState } from "react";
 import Button from "../../components/button/button";
 const Hero = () => {
@@ -19,17 +22,17 @@ const Hero = () => {
   window.addEventListener("resize", () => {
     setWindow(window.innerWidth);
   });
-  const discountSlider={
-    1024:{
-      spaceBetween:16
+  const discountSlider = {
+    1024: {
+      spaceBetween: 16,
     },
-    768:{
-      spaceBetween:16
+    768: {
+      spaceBetween: 16,
     },
-    576:{
-      spaceBetween:20
-    }
-  }
+    576: {
+      spaceBetween: 20,
+    },
+  };
   return (
     <>
       <section className="hero pt-3">
@@ -105,7 +108,7 @@ const Hero = () => {
           </div>
           <div className="discount-cards mt-4">
             <div className="discount-card__desktop grid grid-cols-2 gap-4">
-            <div className="discount-card flex justify-between ">
+              <div className="discount-card flex justify-between ">
                 <div className="discount-card__header relative">
                   <img
                     src={discountDesktop}
@@ -122,19 +125,19 @@ const Hero = () => {
                     рулон)
                   </p>
                   <div className="discount__price__wrapper flex mt-3 mb-4">
-                  <span className="discount-card__body__price text-extra-dark font-bold font-serif">
-                    449 ₽
-                  </span>
-                  <span className="discount-card__body__old__price ms-2 font-serif text-normal font-medium">
-                    499 ₽
-                  </span>
+                    <span className="discount-card__body__price text-extra-dark font-bold font-serif">
+                      449 ₽
+                    </span>
+                    <span className="discount-card__body__old__price ms-2 font-serif text-normal font-medium">
+                      499 ₽
+                    </span>
                   </div>
                   <div className="discount-card__footer mt-2">
-                  <Button className="discount-card__btn">В корзину</Button>
-                </div>
+                    <Button className="discount-card__btn">В корзину</Button>
+                  </div>
                 </div>
               </div>
-            <div className="discount-card flex justify-between ">
+              <div className="discount-card flex justify-between ">
                 <div className="discount-card__header relative">
                   <img
                     src={discountDesktop}
@@ -151,19 +154,19 @@ const Hero = () => {
                     рулон)
                   </p>
                   <div className="discount__price__wrapper flex mt-3 mb-4">
-                  <span className="discount-card__body__price text-extra-dark font-bold font-serif">
-                    449 ₽
-                  </span>
-                  <span className="discount-card__body__old__price ms-2 font-serif text-normal font-medium">
-                    499 ₽
-                  </span>
+                    <span className="discount-card__body__price text-extra-dark font-bold font-serif">
+                      449 ₽
+                    </span>
+                    <span className="discount-card__body__old__price ms-2 font-serif text-normal font-medium">
+                      499 ₽
+                    </span>
                   </div>
                   <div className="discount-card__footer mt-2">
-                  <Button className="discount-card__btn">В корзину</Button>
-                </div>
+                    <Button className="discount-card__btn">В корзину</Button>
+                  </div>
                 </div>
               </div>
-            <div className="discount-card flex justify-between ">
+              <div className="discount-card flex justify-between ">
                 <div className="discount-card__header relative">
                   <img
                     src={discountDesktop}
@@ -180,19 +183,19 @@ const Hero = () => {
                     рулон)
                   </p>
                   <div className="discount__price__wrapper flex mt-3 mb-4">
-                  <span className="discount-card__body__price text-extra-dark font-bold font-serif">
-                    449 ₽
-                  </span>
-                  <span className="discount-card__body__old__price ms-2 font-serif text-normal font-medium">
-                    499 ₽
-                  </span>
+                    <span className="discount-card__body__price text-extra-dark font-bold font-serif">
+                      449 ₽
+                    </span>
+                    <span className="discount-card__body__old__price ms-2 font-serif text-normal font-medium">
+                      499 ₽
+                    </span>
                   </div>
                   <div className="discount-card__footer mt-2">
-                  <Button className="discount-card__btn">В корзину</Button>
-                </div>
+                    <Button className="discount-card__btn">В корзину</Button>
+                  </div>
                 </div>
               </div>
-            <div className="discount-card flex justify-between ">
+              <div className="discount-card flex justify-between ">
                 <div className="discount-card__header relative">
                   <img
                     src={discountDesktop}
@@ -209,16 +212,16 @@ const Hero = () => {
                     рулон)
                   </p>
                   <div className="discount__price__wrapper flex mt-3 mb-4">
-                  <span className="discount-card__body__price text-extra-dark font-bold font-serif">
-                    449 ₽
-                  </span>
-                  <span className="discount-card__body__old__price ms-2 font-serif text-normal font-medium">
-                    499 ₽
-                  </span>
+                    <span className="discount-card__body__price text-extra-dark font-bold font-serif">
+                      449 ₽
+                    </span>
+                    <span className="discount-card__body__old__price ms-2 font-serif text-normal font-medium">
+                      499 ₽
+                    </span>
                   </div>
                   <div className="discount-card__footer mt-2">
-                  <Button className="discount-card__btn">В корзину</Button>
-                </div>
+                    <Button className="discount-card__btn">В корзину</Button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -271,14 +274,23 @@ const Hero = () => {
                 <div className="discount-card">
                   <div className="discount-card__header flex justify-center relative">
                     <picture>
-                      <source media="(min-width:1024px)" srcSet={discountLaptop} />
-                      <source media="(min-width:768px)" srcSet={discountTablet} />
-                      <source media="(min-width:576px)" srcSet={discountMobile} />
+                      <source
+                        media="(min-width:1024px)"
+                        srcSet={discountLaptop}
+                      />
+                      <source
+                        media="(min-width:768px)"
+                        srcSet={discountTablet}
+                      />
+                      <source
+                        media="(min-width:576px)"
+                        srcSet={discountMobile}
+                      />
                       <img
-                      src={discountDesktop}
-                      alt="product img"
-                      className="discount-card__header__img"
-                    />
+                        src={discountDesktop}
+                        alt="product img"
+                        className="discount-card__header__img"
+                      />
                     </picture>
                     <span className="discount__number text-center text-normal text-extra-dark font-serif font-medium">
                       −25%
@@ -306,14 +318,23 @@ const Hero = () => {
                 <div className="discount-card">
                   <div className="discount-card__header flex justify-center relative">
                     <picture>
-                      <source media="(min-width:1024px)" srcSet={discountLaptop} />
-                      <source media="(min-width:768px)" srcSet={discountTablet} />
-                      <source media="(min-width:576px)" srcSet={discountMobile} />
+                      <source
+                        media="(min-width:1024px)"
+                        srcSet={discountLaptop}
+                      />
+                      <source
+                        media="(min-width:768px)"
+                        srcSet={discountTablet}
+                      />
+                      <source
+                        media="(min-width:576px)"
+                        srcSet={discountMobile}
+                      />
                       <img
-                      src={discountDesktop}
-                      alt="product img"
-                      className="discount-card__header__img"
-                    />
+                        src={discountDesktop}
+                        alt="product img"
+                        className="discount-card__header__img"
+                      />
                     </picture>
                     <span className="discount__number text-center text-normal text-extra-dark font-serif font-medium">
                       −25%
@@ -341,14 +362,23 @@ const Hero = () => {
                 <div className="discount-card">
                   <div className="discount-card__header flex justify-center relative">
                     <picture>
-                      <source media="(min-width:1024px)" srcSet={discountLaptop} />
-                      <source media="(min-width:768px)" srcSet={discountTablet} />
-                      <source media="(min-width:576px)" srcSet={discountMobile} />
+                      <source
+                        media="(min-width:1024px)"
+                        srcSet={discountLaptop}
+                      />
+                      <source
+                        media="(min-width:768px)"
+                        srcSet={discountTablet}
+                      />
+                      <source
+                        media="(min-width:576px)"
+                        srcSet={discountMobile}
+                      />
                       <img
-                      src={discountDesktop}
-                      alt="product img"
-                      className="discount-card__header__img"
-                    />
+                        src={discountDesktop}
+                        alt="product img"
+                        className="discount-card__header__img"
+                      />
                     </picture>
                     <span className="discount__number text-center text-normal text-extra-dark font-serif font-medium">
                       −25%
@@ -372,6 +402,188 @@ const Hero = () => {
                 </div>
               </SwiperSlide>
             </Swiper>
+          </div>
+        </div>
+      </section>
+      <section className="popular-categories sm:mt-10 md:mt-12 lg:mt-14 xl:mt-20">
+        <div className="container">
+          <div className="discount-top sm:mb-5 md:mb-4 flex justify-between items-center">
+            <h3 className="discount-top__title lg:text-title text-dark font-semibold font-serif">
+              Популярные категории
+            </h3>
+            <span className="discount__see__more  items-center  md:inline-flex">
+              <span className="discount__see__more__txt  me-2 text-extra-dark text-inner font-medium font-serif">
+                Все категории
+              </span>
+              <img
+                src={chevronRight}
+                alt="chevron right"
+                className="discount__see__more__img"
+              />
+            </span>
+          </div>
+          <div className="popular-categories__wrapper grid grid-cols-2 gap-5 md:grid-cols-3 md:gap-4 lg:grid-cols-4 xl:grid-cols-6">
+            <div className="popular-category relative flex flex-col items-center">
+              <span className="popular-category__name text-inner text-dark font-serif font-medium mt-3">
+                Душевые
+              </span>
+              <img
+                src={categoryImg}
+                alt="category img"
+                className="popular-category__img mt-4"
+              />
+            </div>
+            <div className="popular-category relative flex flex-col items-center">
+              <span className="popular-category__name text-inner text-dark font-serif font-medium mt-3">
+                Душевые
+              </span>
+              <img
+                src={categoryImg}
+                alt="category img"
+                className="popular-category__img mt-4"
+              />
+            </div>
+            <div className="popular-category relative flex flex-col items-center">
+              <span className="popular-category__name text-inner text-dark font-serif font-medium mt-3">
+                Душевые
+              </span>
+              <img
+                src={categoryImg}
+                alt="category img"
+                className="popular-category__img mt-4"
+              />
+            </div>
+            <div className="popular-category relative flex flex-col items-center">
+              <span className="popular-category__name text-inner text-dark font-serif font-medium mt-3">
+                Душевые
+              </span>
+              <img
+                src={categoryImg}
+                alt="category img"
+                className="popular-category__img mt-4"
+              />
+            </div>
+            <div className="popular-category relative flex flex-col items-center">
+              <span className="popular-category__name text-inner text-dark font-serif font-medium mt-3">
+                Душевые
+              </span>
+              <img
+                src={categoryImg}
+                alt="category img"
+                className="popular-category__img mt-4"
+              />
+            </div>
+            <div className="popular-category relative flex flex-col items-center">
+              <span className="popular-category__name text-inner text-dark font-serif font-medium mt-3">
+                Душевые
+              </span>
+              <img
+                src={categoryImg}
+                alt="category img"
+                className="popular-category__img mt-4"
+              />
+            </div>
+          </div>
+          <span className="discount__see__more discount__see__more__bottom mt-4">
+            <span className="discount__see__more__txt  me-2 text-extra-dark text-inner font-medium font-serif">
+              Все категории
+            </span>
+            <img
+              src={chevronRight}
+              alt="chevron right"
+              className="discount__see__more__img"
+            />
+          </span>
+        </div>
+      </section>
+      <section className="popular-products sm:mt-10 md:mt-12 lg:mt-14 xl:mt-20">
+        <div className="container">
+        <div className="discount-top sm:mb-5 md:mb-4 flex justify-between items-center">
+            <h3 className="discount-top__title lg:text-title text-dark font-semibold font-serif">
+              Популярные категории
+            </h3>
+          </div>
+          <div className="popular-products__wrapper grid grid-cols-2 gap-5 md:gap-4 lg:grid-cols-3 xl:grid-cols-4">
+            <div className="popular-product">
+              <div className="popular-product__header flex justify-center">
+                <picture className="popular-product__img">
+                  <source media="(min-width:576px)" srcSet={popularDesktop} />
+                  <source media="(min-width:360px)" srcSet={popularMobile} />
+                  <img src={popularDesktop} alt="product img" />
+                </picture>
+              </div>
+              <div className="popular-product__body md:p-4 sm:p-2">
+                <p className="popular-product__txt  text-normal text-extra-dark font-serif font-medium">
+                  Керамогранит Yasmin 598х185 коричневый C-YA4M112D
+                </p>
+                <span className="popular-product__price text-extra-dark font-bold font-serif mt-3 inline-block">
+                  899 ₽
+                </span>
+              </div>
+              <div className="popular-product__footer mt-2 px-2 pb-4 md:px-4">
+                <Button className="popular-product__btn">В корзину</Button>
+              </div>
+            </div>
+            <div className="popular-product">
+              <div className="popular-product__header flex justify-center">
+                <picture className="popular-product__img">
+                  <source media="(min-width:576px)" srcSet={popularDesktop} />
+                  <source media="(min-width:360px)" srcSet={popularMobile} />
+                  <img src={popularDesktop} alt="product img" />
+                </picture>
+              </div>
+              <div className="popular-product__body md:p-4 sm:p-2">
+                <p className="popular-product__txt  text-normal text-extra-dark font-serif font-medium">
+                  Керамогранит Yasmin 598х185 коричневый C-YA4M112D
+                </p>
+                <span className="popular-product__price text-extra-dark font-bold font-serif mt-3 inline-block">
+                  899 ₽
+                </span>
+              </div>
+              <div className="popular-product__footer mt-2 px-2 pb-4 md:px-4">
+                <Button className="popular-product__btn">В корзину</Button>
+              </div>
+            </div>
+            <div className="popular-product">
+              <div className="popular-product__header flex justify-center">
+                <picture className="popular-product__img">
+                  <source media="(min-width:576px)" srcSet={popularDesktop} />
+                  <source media="(min-width:360px)" srcSet={popularMobile} />
+                  <img src={popularDesktop} alt="product img" />
+                </picture>
+              </div>
+              <div className="popular-product__body md:p-4 sm:p-2">
+                <p className="popular-product__txt  text-normal text-extra-dark font-serif font-medium">
+                  Керамогранит Yasmin 598х185 коричневый C-YA4M112D
+                </p>
+                <span className="popular-product__price text-extra-dark font-bold font-serif mt-3 inline-block">
+                  899 ₽
+                </span>
+              </div>
+              <div className="popular-product__footer mt-2 px-2 pb-4 md:px-4">
+                <Button className="popular-product__btn">В корзину</Button>
+              </div>
+            </div>
+            <div className="popular-product">
+              <div className="popular-product__header flex justify-center">
+                <picture className="popular-product__img">
+                  <source media="(min-width:576px)" srcSet={popularDesktop} />
+                  <source media="(min-width:360px)" srcSet={popularMobile} />
+                  <img src={popularDesktop} alt="product img" />
+                </picture>
+              </div>
+              <div className="popular-product__body md:p-4 sm:p-2">
+                <p className="popular-product__txt  text-normal text-extra-dark font-serif font-medium">
+                  Керамогранит Yasmin 598х185 коричневый C-YA4M112D
+                </p>
+                <span className="popular-product__price text-extra-dark font-bold font-serif mt-3 inline-block">
+                  899 ₽
+                </span>
+              </div>
+              <div className="popular-product__footer mt-2 px-2 pb-4 md:px-4">
+                <Button className="popular-product__btn">В корзину</Button>
+              </div>
+            </div>
           </div>
         </div>
       </section>
