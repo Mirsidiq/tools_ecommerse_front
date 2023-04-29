@@ -14,10 +14,13 @@ import discountDesktop from "../../assets/img/discount-img.png";
 import popularMobile from "../../assets/img/popular-product__mobile.png";
 import popularDesktop from "../../assets/img/popular-product.png";
 import categoryImg from "../../assets/img/category-img.png";
+import clientAvatar from "../../assets/img/client-avatar.svg";
+import doubleQuote from "../../assets/img/quote.svg";
 import { useRef, useState } from "react";
 import Button from "../../components/button/button";
 const Hero = () => {
   const swiperRef = useRef();
+  const swiperRefClient=useRef();
   const [getWindow, setWindow] = useState(window.innerWidth);
   window.addEventListener("resize", () => {
     setWindow(window.innerWidth);
@@ -31,6 +34,24 @@ const Hero = () => {
     },
     576: {
       spaceBetween: 20,
+    },
+  };
+  const clientsSlider = {
+    1024: {
+      spaceBetween: 16,
+      slidesPerView:"auto"
+    },
+    768: {
+      spaceBetween: 16,
+      slidesPerView:"auto"
+    },
+    576:{
+      spaceBetween: 16,
+      slidesPerView:"auto"
+    },
+    360: {
+      spaceBetween: 20,
+      slidesPerView:1
     },
   };
   return (
@@ -496,11 +517,11 @@ const Hero = () => {
           </span>
         </div>
       </section>
-      <section className="popular-products sm:mt-10 md:mt-12 lg:mt-14 xl:mt-20">
+      <section className="popular-products sm:py-10 md:py-12 sm:mt-10 md:mt-12 lg:mt-14 xl:mt-20">
         <div className="container">
         <div className="discount-top sm:mb-5 md:mb-4 flex justify-between items-center">
             <h3 className="discount-top__title lg:text-title text-dark font-semibold font-serif">
-              Популярные категории
+            Популярные товары
             </h3>
           </div>
           <div className="popular-products__wrapper grid grid-cols-2 gap-5 md:gap-4 lg:grid-cols-3 xl:grid-cols-4">
@@ -585,6 +606,133 @@ const Hero = () => {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+      <section className="clients">
+        <div className="container">
+        <div className="discount-top sm:mb-5 md:mb-4 flex justify-between items-center">
+            <h3 className="discount-top__title lg:text-title text-dark font-semibold font-serif">
+            Отзывы
+            </h3>
+            <div
+            className="clients-card__slider__btns"
+            >
+              <button
+                className="hero__slider__btn inline-flex justify-center items-center"
+                onClick={() => swiperRefClient.current?.slidePrev()}
+              >
+                <img src={prevArrow} alt="arrow logo" />
+              </button>
+              <button
+                className="hero__slider__btn inline-flex justify-center items-center ms-3"
+                onClick={() => swiperRefClient.current?.slideNext()}
+              >
+                <img src={nextArrow} alt="arrow logo" />
+              </button>
+            </div>
+          </div>
+        <Swiper
+              className="clients__slider"
+              breakpoints={clientsSlider}
+              onBeforeInit={(swiper) => (swiperRefClient.current = swiper)}
+            >
+              <SwiperSlide>
+                {" "}
+                <div className="client-card mt-4 p-6">
+                  <div className="client-card__header flex items-center relative">
+                        <img src={clientAvatar} alt="avatar" className="client-card__img" />
+                        <p className="client-card__username text-inner font-serif font-bold ms-3 text-dark">Пётр</p>
+                        <img src={doubleQuote} alt="double quota" className="client-card__quota__img absolute top-0 right-0" />
+                  </div>
+                  <div className="client-card__body mt-3">
+                        <p className="client-card__txt text-normal font-serif font-normal text-dark">
+                        Сегодня 10.03.2022 года, брал перфоратор в аренду в магазине по улице Дорожная. Продавец всё хорошо объяснил, показал и плюс остался бонус в ящике перфоратора это бур нужного мне диаметра, оставленным прежним арендатором. В общем повесил телевизор, где надо было просверлить 4 отверстия, всего за 100 ₽
+                        </p>
+                  </div>
+                  <div className="client-card__footer mt-4">
+                        <span className="client-card__date text-normal font-serif">
+                        21 марта 2022 г.
+                        </span>
+                  </div>
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                {" "}
+                <div className="client-card mt-4 p-6">
+                  <div className="client-card__header flex items-center relative">
+                        <img src={clientAvatar} alt="avatar" className="client-card__img" />
+                        <p className="client-card__username text-inner font-serif font-bold ms-3 text-dark">Пётр</p>
+                        <img src={doubleQuote} alt="double quota" className="client-card__quota__img absolute top-0 right-0" />
+                  </div>
+                  <div className="client-card__body mt-3">
+                        <p className="client-card__txt text-normal font-serif font-normal text-dark">
+                        Сегодня 10.03.2022 года, брал перфоратор в аренду в магазине по улице Дорожная. Продавец всё хорошо объяснил, показал и плюс остался бонус в ящике перфоратора это бур нужного мне диаметра, оставленным прежним арендатором. В общем повесил телевизор, где надо было просверлить 4 отверстия, всего за 100 ₽
+                        </p>
+                  </div>
+                  <div className="client-card__footer mt-4">
+                        <span className="client-card__date text-normal font-serif">
+                        21 марта 2022 г.
+                        </span>
+                  </div>
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                {" "}
+                <div className="client-card mt-4 p-6">
+                  <div className="client-card__header flex items-center relative">
+                        <img src={clientAvatar} alt="avatar" className="client-card__img" />
+                        <p className="client-card__username text-inner font-serif font-bold ms-3 text-dark">Пётр</p>
+                        <img src={doubleQuote} alt="double quota" className="client-card__quota__img absolute top-0 right-0" />
+                  </div>
+                  <div className="client-card__body mt-3">
+                        <p className="client-card__txt text-normal font-serif font-normal text-dark">
+                        Сегодня 10.03.2022 года, брал перфоратор в аренду в магазине по улице Дорожная. Продавец всё хорошо объяснил, показал и плюс остался бонус в ящике перфоратора это бур нужного мне диаметра, оставленным прежним арендатором. В общем повесил телевизор, где надо было просверлить 4 отверстия, всего за 100 ₽
+                        </p>
+                  </div>
+                  <div className="client-card__footer mt-4">
+                        <span className="client-card__date text-normal font-serif">
+                        21 марта 2022 г.
+                        </span>
+                  </div>
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                {" "}
+                <div className="client-card mt-4 p-6">
+                  <div className="client-card__header flex items-center relative">
+                        <img src={clientAvatar} alt="avatar" className="client-card__img" />
+                        <p className="client-card__username text-inner font-serif font-bold ms-3 text-dark">Пётр</p>
+                        <img src={doubleQuote} alt="double quota" className="client-card__quota__img absolute top-0 right-0" />
+                  </div>
+                  <div className="client-card__body mt-3">
+                        <p className="client-card__txt text-normal font-serif font-normal text-dark">
+                        Сегодня 10.03.2022 года, брал перфоратор в аренду в магазине по улице Дорожная. Продавец всё хорошо объяснил, показал и плюс остался бонус в ящике перфоратора это бур нужного мне диаметра, оставленным прежним арендатором. В общем повесил телевизор, где надо было просверлить 4 отверстия, всего за 100 ₽
+                        </p>
+                  </div>
+                  <div className="client-card__footer mt-4">
+                        <span className="client-card__date text-normal font-serif">
+                        21 марта 2022 г.
+                        </span>
+                  </div>
+                </div>
+              </SwiperSlide>
+            </Swiper>
+            <div
+            className="clients-card__slider__btns__bottom mt-4"
+            >
+              <button
+                className="hero__slider__btn inline-flex justify-center items-center"
+                onClick={() => swiperRefClient.current?.slidePrev()}
+              >
+                <img src={prevArrow} alt="arrow logo" />
+              </button>
+              <button
+                className="hero__slider__btn inline-flex justify-center items-center ms-3"
+                onClick={() => swiperRefClient.current?.slideNext()}
+              >
+                <img src={nextArrow} alt="arrow logo" />
+              </button>
+            </div>
         </div>
       </section>
     </>

@@ -101,6 +101,27 @@
 .popular-product__btn{
   width: 100%;
 }
+.clients{
+  background-color: #F6F6F6;
+  padding: 50px 0;
+}
+.client-card{
+  border: 1px solid #E8E9EA;
+  background-color: #fff;
+}
+.client-card__date{
+  color: #8B8D92;
+}
+.clients__slider .swiper-slide{
+  width: 40%;
+}
+.clients-card__slider__btns{
+  display: inline-flex;
+  align-items: center;
+}
+.clients-card__slider__btns__bottom {
+  display: none;
+}
 @media only screen and (min-width:1200px){
   .discount__slider{
     display: none;
@@ -228,5 +249,15 @@
   }
   .popular-product__btn{
     padding: 12px 23px !important;
+  }
+  .clients__slider{
+    width:100%;
+  }
+  .clients-card__slider__btns{
+    display: none;
+  }
+  .clients-card__slider__btns__bottom {
+    display: inline-flex;
+    align-items: center;
   }
 }
