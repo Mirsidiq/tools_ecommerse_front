@@ -41,7 +41,7 @@ const Header = () => {
                 } py-11 absolute w-full overflow-auto`}
               >
                 <div className="mobile-line w-full bg-light"></div>
-                <div className="header__catalog__btn bg-primary flex items-center justify-center mt-3 w-full lg:ms-auto">
+                <div onClick={()=>navigate("/categories")} className="header__catalog__btn bg-primary flex items-center justify-center mt-3 w-full lg:ms-auto">
                   <div className="toggle__lines relative">
                     <span className="toggle__line w-4/12"></span>
                     <span className="toggle__line w-10/12"></span>
@@ -239,7 +239,7 @@ const Header = () => {
           <div className="container">
             <div className="header-middle__tablet my-3 lg:my-4 hidden  md:flex justify-between items-center lg:justify-start">
               <img src={tabletLogo} alt="header logo tablet" onClick={()=>navigate("/")} />
-              <div className="header__catalog__btn bg-primary flex items-center justify-center lg:ms-auto">
+              <div onClick={()=>navigate("/categories")} className="header__catalog__btn bg-primary flex items-center justify-center lg:ms-auto">
                 <div className="toggle__lines relative">
                   <span className="toggle__line w-4/12"></span>
                   <span className="toggle__line w-10/12"></span>

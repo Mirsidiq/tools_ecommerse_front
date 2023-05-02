@@ -47,7 +47,13 @@
 .discount-card{
   border: 1px solid #E8E9EA;
 }
+.discount-card__header{
+  width: 278px;
+  height: 208px;
+}
 .discount-card__header__img{
+  width: 278px;
+  height: 208px;
   object-fit: cover;
   object-position: center;
 }
@@ -97,6 +103,10 @@
 }
 .popular-product__header{
   border-bottom: 1px solid #E8E9EA;
+}
+.popular-category__img{
+  width: 180px;
+  height: 128px;
 }
 .popular-product__btn{
   width: 100%;
@@ -223,6 +233,11 @@
   .discount-card__header{
     height: 110px;
   }
+  .discount-card__header__img,
+  .discount-card__header{
+    width: 148px;
+    height: 110px;
+  }
   .discount-card__body{
     padding: 8px;
   }
@@ -246,6 +261,10 @@
   }
   .discount__slider{
     display: none;
+  }
+  .popular-category__img{
+    width: 148px;
+    height: 106px;
   }
   .popular-product__btn{
     padding: 12px 23px !important;
