@@ -1,0 +1,20 @@
+.contact-title{
+font-family: Manrope;
+font-size: 48px;
+font-weight: 700;
+line-height: 58px;
+}
+@media only screen and (max-width:768px){
+  .contact-title{
+    font-size: 34px;
+    font-weight: 600;
+    line-height: 44px;
+    }
+}
+@media only screen and (max-width:576px){
+  .contact-title{
+    font-size: 26px;
+    font-weight: 600;
+    line-height: 33px;
+    }
+}

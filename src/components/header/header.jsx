@@ -10,8 +10,10 @@ import basketLogo from "../../assets/img/basket.svg";
 import userLogo from "../../assets/img/user.svg";
 import cubeLogo from "../../assets/img/cube.svg";
 import xmark from "../../assets/img/xmark.png";
+import { NavLink, useNavigate } from "react-router-dom";
 const Header = () => {
   const [toggle, setToggle] = useState(false);
+  const navigate=useNavigate()
   return (
     <>
       <header className="header">
@@ -27,7 +29,7 @@ const Header = () => {
                   alt="header top toggle logo"
                 />
               </div>
-              <div className="header-top__mobile__logo mx-3">
+              <div className="header-top__mobile__logo mx-3" onClick={()=>navigate("/")}>
                 <img src={mobileLogo} alt="header top toggle logo" />
               </div>
               <div className="header-top__mobile__basket">
@@ -171,12 +173,12 @@ const Header = () => {
                     </a>
                   </li>
                   <li className="header-top__nav__item ms-0 mt-3">
-                    <a
-                      href="#"
+                    <NavLink
+                      to={"/contact"}
                       className="header-top__nav__link text-normal font-serif"
                     >
                       Контакты
-                    </a>
+                    </NavLink>
                   </li>
                 </ul>
               </div>
@@ -221,12 +223,12 @@ const Header = () => {
                     </a>
                   </li>
                   <li className="header-top__nav__item ms-6">
-                    <a
-                      href="#"
+                    <NavLink
+                      to={"/contact"}
                       className="header-top__nav__link text-normal font-serif"
                     >
                       Контакты
-                    </a>
+                    </NavLink>
                   </li>
                 </ul>
               </nav>
@@ -236,7 +238,7 @@ const Header = () => {
         <div className="header-middle">
           <div className="container">
             <div className="header-middle__tablet my-3 lg:my-4 hidden  md:flex justify-between items-center lg:justify-start">
-              <img src={tabletLogo} alt="header logo tablet" />
+              <img src={tabletLogo} alt="header logo tablet" onClick={()=>navigate("/")} />
               <div className="header__catalog__btn bg-primary flex items-center justify-center lg:ms-auto">
                 <div className="toggle__lines relative">
                   <span className="toggle__line w-4/12"></span>
