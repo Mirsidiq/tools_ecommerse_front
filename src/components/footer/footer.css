@@ -1,0 +1,21 @@
+
+.footer-line{
+  width: 100%;
+  background-color: #5D6066;
+  height: 1px;
+}
+
+@media only screen and (min-width:1024px){
+  .footer__inner{
+    width: 100%;
+    max-width: 984px;
+    margin: 0 auto;
+  }
+}
+@media only screen and (min-width:1200px){
+  .footer__inner{
+    width: 100%;
+    max-width: 1160px;
+    margin: 0 auto;
+  }
+}
