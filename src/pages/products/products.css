@@ -1,0 +1,15 @@
+.products__filter{
+  width:278px;
+  border: 1px solid #F6F6F6;
+}
+.product__filter__input{
+  width:45%;
+  outline: none;
+  background-color: #D1D1D3;
+  border-bottom: 1px solid #F6F6F6;
+}
+.product__filter__search{
+  outline: none;
+  background-color: #D1D1D3;
+  border-bottom: 1px solid #F6F6F6;
+}

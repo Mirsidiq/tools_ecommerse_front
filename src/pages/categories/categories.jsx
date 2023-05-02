@@ -1,7 +1,9 @@
 import mainBg from "../../assets/img/category-main-bg.jpg"
 import categoryImg from "../../assets/img/category-img.png"
 import "./categories.css"
+import { useNavigate } from "react-router-dom"
 const Categories = () => {
+  const navigate=useNavigate()
   return <>
   <div className="categories py-5 md:py-8">
     <div className="container">
@@ -16,13 +18,13 @@ const Categories = () => {
               <img src={categoryImg} alt="category card img" className="category__card__img mt-4"  />
             </div>
             <ul className="category__card__body mt-5">
-            <li className="category__card__item">Ванны</li>
-            <li className="category__card__item">Ванны</li>
-            <li className="category__card__item">Ванны</li>
-            <li className="category__card__item">Ванны</li>
-            <li className="category__card__item">Ванны</li>
-            <li className="category__card__item">Ванны</li>
-            <li className="category__card__item">Ванны</li>
+            <li className="category__card__item" onClick={()=>navigate("/products")}>Ванны</li>
+            <li className="category__card__item" onClick={()=>navigate("/products")}>Ванны</li>
+            <li className="category__card__item" onClick={()=>navigate("/products")}>Ванны</li>
+            <li className="category__card__item" onClick={()=>navigate("/products")}>Ванны</li>
+            <li className="category__card__item" onClick={()=>navigate("/products")}>Ванны</li>
+            <li className="category__card__item" onClick={()=>navigate("/products")}>Ванны</li>
+            <li className="category__card__item" onClick={()=>navigate("/products")}>Ванны</li>
             </ul>
         </div>
         <div className="category__card">
