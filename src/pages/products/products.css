@@ -1,3 +1,10 @@
+.products__title{
+font-family: Manrope;
+font-size: 48px;
+font-weight: 700;
+line-height: 58px;
+color: #171B24;
+}
 .products__filter{
   width:278px;
   border: 1px solid #F6F6F6;
@@ -12,4 +19,117 @@
   outline: none;
   background-color: #D1D1D3;
   border-bottom: 1px solid #F6F6F6;
+}
+.product-line{
+  width: 100%;
+  height: 1px;
+  background-color: #E8E9EA;
+}
+.product__filter__btn{
+  width: 100%;
+}
+.product__filter__reset__btn{
+  background-color: transparent !important;
+  border: 1px solid #E8E9EA;
+}
+.product__cards__filter__item+.product__cards__filter__item{
+  margin-left: 20px;
+}
+.product__cards__filter__item{
+  color: #8B8D92;
+}
+.product__card{
+  border: 1px solid #E8E9EA;
+}
+.product__card__header{
+  display: flex;
+  justify-content: center;
+  width: 278px;
+  height: 208px;
+}
+.product__card__img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.products__filter__toggle{
+  display: none;
+  border: 1px solid #E8E9EA;
+}
+.product__card__body{
+  padding: 16px;
+}
+.product__card__price{
+  display: block;
+font-family: Manrope;
+font-size: 20px;
+font-weight: 700;
+line-height: 28px;
+margin-top: 12px;
+}
+.product__card__footer{
+  padding: 16px;
+  margin-top:8px;
+}
+.product__card__add{
+  width: 100%;
+}
+@media only screen and (max-width:1199px){
+  .products__filter{
+    display: none;
+  }
+  .products__filter__toggle{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+@media only screen and (max-width:960px){
+  .product__card__header{
+    max-width: 224px;
+    height: 208px;
+  }
+}
+@media only screen and (max-width:767px){
+  .products__title{
+    font-size: 34px;
+font-weight: 600;
+line-height: 44px;
+  }
+  .product__card__header{
+    width: 226px;
+    height: 208px;
+  }
+  .product__card__body{
+    padding: 8px;
+  }
+  .product__card__price{
+    margin-top: 12px;
+  }
+  .product__card__footer{
+    padding: 8px;
+    margin-top: 8px;
+  }
+}
+@media only screen and (max-width:575px){
+  .products__title{
+    font-size: 26px;
+    line-height: 34px;
+    
+  }
+  .product__card__header{
+    width: 148px;
+    height: 110px;
+  }
+  .product__card__body{
+    padding: 8px;
+  }
+  .product__card__price{
+    margin-top: 12px;
+  }
+  .product__card__footer{
+    padding: 8px;
+    margin-top: 8px;
+  }
 }
