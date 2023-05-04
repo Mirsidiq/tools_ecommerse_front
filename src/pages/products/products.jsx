@@ -3,8 +3,12 @@ import Button from "../../components/button/button"
 import filterLogo from "../../assets/img/filter.svg"
 import product from "../../assets/img/product.png"
 import productMobile from "../../assets/img/product-mobile.png"
+import nextArrow from "../../assets/img/next-arrow.svg"
+import prevArrow from "../../assets/img/prev-arrow.svg"
 import { useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 const Products = () => {
+  const navigate=useNavigate()
 useEffect(()=>{
   const productsFilters=document.querySelectorAll('.product__cards__filter__item')
   const addActive=()=>{
@@ -77,7 +81,7 @@ useEffect(()=>{
                 <span className="product__card__price text-extra-dark">212 ₽</span>
               </div>
               <div className="product__card__footer">
-                  <Button className="product__card__add">В корзину</Button>
+                  <Button className="product__card__add" onClick={()=>navigate("/single-product")}>В корзину</Button>
               </div>
           </div>
           <div className="product__card">
@@ -114,6 +118,17 @@ useEffect(()=>{
           </div>
           </div>
         </div>
+      </div>
+      <div className="product__card__pagination flex justify-center mt-4">
+        <div className="product__pagination__btn inline-flex justify-center items-center"><img src={prevArrow} alt="arrow prev"  /></div>
+        <ul className="product__pagination__list flex">
+  <li className="product__pagination__item product__pagination__btn text-inner font-serif font-medium text-dark inline-flex justify-center items-center ms-1">1</li>
+  <li className="product__pagination__item product__pagination__btn text-inner font-serif font-medium text-dark inline-flex justify-center items-center ms-1">1</li>
+  <li className="product__pagination__item product__pagination__btn text-inner font-serif font-medium text-dark inline-flex justify-center items-center ms-1">1</li>
+  <li className="product__pagination__item product__pagination__btn text-inner font-serif font-medium text-dark inline-flex justify-center items-center ms-1">1</li>
+  <li className="product__pagination__item product__pagination__btn text-inner font-serif font-medium text-dark inline-flex justify-center items-center ms-1">1</li>
+        </ul>
+        <div className="product__pagination__btn inline-flex justify-center items-center ms-1"><img src={nextArrow} alt="arrow next"  /></div>
       </div>
     </div>
   </div>
