@@ -46,3 +46,30 @@
 .single-product__bottom{
   padding:60px;
 }
+.single-product__modal__body{
+  border:1px solid #E8E9EA;
+}
+.single-product__modal__img{
+  width: 180px;
+  height: 134px;
+}
+.single-product__modal__inner__info{
+  border-left:1px solid #E8E9EA;
+}
+.single-product__modal__price{
+font-family: Manrope;
+font-size: 20px;
+font-weight: 700;
+line-height: 28px;
+}
+.single-product__modal__btn__continue{
+  border:1px solid #E8E9EA;
+  background-color: transparent !important;
+  margin-left: 24px;
+}
+.modal-active{
+  display: block;
+}
+.modal{
+  display: none;
+}

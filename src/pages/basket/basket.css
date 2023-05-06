@@ -1,0 +1,52 @@
+.basket-hero__title{
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  transform: translateY(-50%);
+font-family: Manrope;
+font-size: 48px;
+font-weight: 700;
+line-height: 58px;
+}
+.basket-left{
+  padding: 16px;
+  width: 278px;
+  border: 1px solid #F6F6F6;
+}
+.basket-left__payment{
+  border-top: 1px solid #F6F6F6;
+  border-bottom: 1px solid #F6F6F6;
+}
+.basket-card{
+  border:1px solid #F6F6F6 ;
+}
+.basket-card+.basket-card{
+  margin-top: 16px;
+}
+.basket-card__img__wrapper{
+  width: 278px !important;
+  height: 208px !important;
+  border-right:1px solid #F6F6F6 ;
+}
+.basket-card__img{
+  /* width: 100%; */
+  width: 278px;
+  height: 208px;
+}
+.basket-card__price{
+font-family: Manrope;
+font-size: 20px;
+font-weight: 700;
+line-height: 28px;
+}
+.basket-card__count{
+  width: 160px;
+}
+.basket-card__content{
+  /* width: 100%; */
+  width: 262px;
+}
+.basket-card__delete__btn{
+  width: 262px;
+  border: 1px solid #F6F6F6;
+}

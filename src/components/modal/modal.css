@@ -1,0 +1,14 @@
+.modal__content{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  width:500px;
+  background-color: #fff;
+  height: 346px;
+  z-index: 5;
+}
+.modal__overlay{
+  background-color: #171B2499;
+  opacity: .6;
+}

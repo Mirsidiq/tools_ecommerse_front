@@ -1,9 +1,14 @@
+import {useNavigate} from "react-router-dom"
 import "./singleProduct.css"
 import singleProductImg from "../../assets/img/single-product.png"
 import Button from "../../components/button/button";
+import productImg from "../../assets/img/popular-product__mobile.png"
 import { useState } from "react";
+import Modal from "../../components/modal/modal";
 const SingleProduct = () => {
   let [count,setCount]=useState(1)
+  const [open,setOpen]=useState(false)
+  const navigate=useNavigate()
   const inc=()=>setCount(count+1)
   const dec=()=>count>1 ?setCount(count-1):setCount(1)
   return <>
@@ -21,7 +26,7 @@ const SingleProduct = () => {
               212 ₽
               </span>
               <div className="single-product__btns flex items-center mt-6">
-                <Button className="single-product__add">В корзину</Button>
+                <Button className="single-product__add" onClick={()=>setOpen(true)}>В корзину</Button>
                 <div className="single-product__btn__actions ms-3 inline-flex">
                   <div className="text-inner text-extra-dark font-serif font-medium inline-flex items-center justify-center single-product__increment" onClick={inc}>+</div>
                   <div className="text-inner text-extra-dark font-serif font-medium inline-flex items-center justify-center single-product__count">{count}</div>
@@ -80,6 +85,23 @@ const SingleProduct = () => {
             </p>
         </div>
       </div>
+      <Modal open={open} setOpen={setOpen}>
+        <div className="single-product__modal">
+          <h3 className="single-product__modal__title lg:text-title text-dark font-serif font-semibold">Товар добавлен в корзину</h3>
+          <div className="single-product__modal__body lg:mt-6 flex">
+            < img src={productImg} className="single-product__modal__img"/>
+            <div className="single-product__modal__inner__info p-4">
+              <p className="single-product__modal__txt text-dark font-serif font-medium text-normal">Плита OSB-3 Kronospan 2500 х 1250 х 9 мм, хвойные породы</p>
+              <p className="single-product__modal__price mt-3">995 ₽</p>
+              <p className="single-product__modal__count mt-3 text-dark font-serif font-medium text-normal">2 шт.</p>
+            </div>
+          </div>
+        </div>
+        <div className="single-product__modal__btns flex justify-center mt-6">
+          <Button onClick={()=>navigate("/basket")}>Перейти в корзину</Button>
+          <Button onClick={()=>setOpen(!open)} className="single-product__modal__btn__continue">Продолжить покупки</Button>
+        </div>
+      </Modal>
     </div>
   </>;
 }

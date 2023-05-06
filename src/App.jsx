@@ -6,6 +6,7 @@ import Hero from "./pages/hero/hero"
 import { Route,Router,Routes } from "react-router-dom"
 import Products from "./pages/products/products"
 import SingleProduct from "./pages/singleProduct/SingleProduct"
+import Basket from "./pages/basket/basket"
 function App() {
   return (
     <>
@@ -16,6 +17,7 @@ function App() {
       <Route element={<Categories/>} path="/categories"/>
       <Route element={<Products/>} path="/products"/>
       <Route element={<SingleProduct/>} path="/single-product"/>
+      <Route element={<Basket/>} path="/basket"/>
     </Routes>
     <Footer/>
     {/* <Contact/> */}
