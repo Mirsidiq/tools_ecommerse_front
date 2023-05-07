@@ -19,6 +19,16 @@ const Header = () => {
   const [login, setLogin] = useState(false);
   const [register, setRegister] = useState(false);
   const [checkPassword,setCheckPassword]=useState("")
+  const[visible,setVisible]=useState(false)
+  const passwordVerify=(value)=>{
+    if(value==checkPassword){
+      console.log(value);
+      setVisible(true)
+    }
+   else{
+    setVisible(false)
+   }
+  }
   const navigate=useNavigate()
   return (
     <>
@@ -404,14 +414,19 @@ const Header = () => {
               </label>
               <label htmlFor="password" className="w-full deliver__user__form__info text-normal font-serif font-medium text-dark mt-6 block">
               Новый пароль
-                <CustomInput  className="w-full deliver__user__input mt-2" id={"password"} type={"password"} placeholder={"jock1323"} required={true} value={checkPassword}/>
+                <CustomInput  className="w-full deliver__user__input mt-2" id={"password"} type={"password"} placeholder={"jock1323"} required={true} value={checkPassword} onChange={(e)=>{
+                  setCheckPassword(e.target.value)
+                  passwordVerify()
+                }}/>
               </label>
-              <label htmlFor="password2" className="w-full deliver__user__form__info text-normal font-serif font-medium text-dark mt-6 block">
+             {
+              checkPassword==""? "": <label htmlFor="password2" className="w-full deliver__user__form__info text-normal font-serif font-medium text-dark mt-6 block">
               Подтверждение пароля
-                <CustomInput className="w-full deliver__user__input mt-2" id={"password2"} type={"password"} placeholder={"jock1323"} required={true}/>
+                <CustomInput className="w-full deliver__user__input mt-2" id={"password2"} type={"password"} placeholder={"jock1323"} required={true} onChange={e=>passwordVerify(e.target.value)}/>
               </label>
+             }
           </div>
-              <Button className="w-full mt-9">Зарегистрироваться</Button>
+              <Button className={`w-full mt-9 ${visible && checkPassword!="" ? "":"hidden"}`}>Зарегистрироваться</Button>
             </form>
             </div>:<div className="login-inner">
               <h3 className="login__title lg:text-title text-dark font-serif font-semibold text-center">Вход</h3>
