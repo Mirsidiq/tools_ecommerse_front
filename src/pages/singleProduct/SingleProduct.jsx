@@ -5,6 +5,7 @@ import Button from "../../components/button/button";
 import productImg from "../../assets/img/popular-product__mobile.png"
 import { useState } from "react";
 import Modal from "../../components/modal/modal";
+import Counter from "../../components/counter/counter.";
 const SingleProduct = () => {
   let [count,setCount]=useState(1)
   const [open,setOpen]=useState(false)
@@ -26,12 +27,8 @@ const SingleProduct = () => {
               212 ₽
               </span>
               <div className="single-product__btns flex items-center mt-6">
-                <Button className="single-product__add" onClick={()=>setOpen(true)}>В корзину</Button>
-                <div className="single-product__btn__actions ms-3 inline-flex">
-                  <div className="text-inner text-extra-dark font-serif font-medium inline-flex items-center justify-center single-product__increment" onClick={inc}>+</div>
-                  <div className="text-inner text-extra-dark font-serif font-medium inline-flex items-center justify-center single-product__count">{count}</div>
-                  <div className="text-inner text-extra-dark font-serif font-medium inline-flex items-center justify-center single-product__decrement" onClick={dec}>-</div>
-                </div>
+                <Button className="single-product__add me-4" onClick={()=>setOpen(true)}>В корзину</Button>
+                <Counter/>
               </div>
             </div>
         </div>

@@ -11,4 +11,5 @@
 .modal__overlay{
   background-color: #171B2499;
   opacity: .6;
+  z-index: 4;
 }

@@ -11,8 +11,14 @@ import userLogo from "../../assets/img/user.svg";
 import cubeLogo from "../../assets/img/cube.svg";
 import xmark from "../../assets/img/xmark.png";
 import { NavLink, useNavigate } from "react-router-dom";
+import Modal from "../modal/modal";
+import CustomInput from "../input/input";
+import Button from "../button/button"
 const Header = () => {
   const [toggle, setToggle] = useState(false);
+  const [login, setLogin] = useState(false);
+  const [register, setRegister] = useState(false);
+  const [checkPassword,setCheckPassword]=useState("")
   const navigate=useNavigate()
   return (
     <>
@@ -51,7 +57,7 @@ const Header = () => {
                     Каталог
                   </span>
                 </div>
-                <div className="header-user__action w-full flex items-center justify-center my-3">
+                <div className="header-user__action w-full flex items-center justify-center my-3" onClick={()=>setLogin(true)}>
                   <img src={userLogo} alt="user avatar" />
                   <span className="header-user__action__txt text-black font-medium">
                     Профиль
@@ -264,7 +270,7 @@ const Header = () => {
                 </label>
               </form>
               <div className="header-user__actions inline-flex justify-between items-center">
-                <div className="header-user__action inline-flex items-center flex-col">
+                <div className="header-user__action inline-flex items-center flex-col" onClick={()=>setLogin(true)}>
                   <img src={userLogo} alt="user avatar" />
                   <span className="header-user__action__txt text-black font-medium">
                     Профиль
@@ -381,6 +387,50 @@ const Header = () => {
             </div>
           </div>
         </div>
+        {
+          setLogin ? <Modal open={login} className={register ? "register":"login"} setOpen={setLogin}>
+            {
+              register ?<div className="register-inner">
+              <h3 className="register__title lg:text-title text-dark font-serif font-semibold text-center">Регистрация</h3>
+            <form className="register__form">
+          <div className="grid lg:grid-cols-2 gap-4">
+              <label htmlFor="username" className="w-full deliver__user__form__info text-normal font-serif font-medium text-dark mt-6 block">
+            Имя
+                <CustomInput className="w-full deliver__user__input mt-2" id={"username"} type={"text"} placeholder={"example@gmail.com"} required={true}/>
+              </label>
+            <label htmlFor="email" className="w-full deliver__user__form__info text-normal font-serif font-medium text-dark mt-6 block">
+            E-mail
+                <CustomInput className="w-full deliver__user__input mt-2" id={"email"} type={"email"} placeholder={"example@gmail.com"} required={true}/>
+              </label>
+              <label htmlFor="password" className="w-full deliver__user__form__info text-normal font-serif font-medium text-dark mt-6 block">
+              Новый пароль
+                <CustomInput  className="w-full deliver__user__input mt-2" id={"password"} type={"password"} placeholder={"jock1323"} required={true} value={checkPassword}/>
+              </label>
+              <label htmlFor="password2" className="w-full deliver__user__form__info text-normal font-serif font-medium text-dark mt-6 block">
+              Подтверждение пароля
+                <CustomInput className="w-full deliver__user__input mt-2" id={"password2"} type={"password"} placeholder={"jock1323"} required={true}/>
+              </label>
+          </div>
+              <Button className="w-full mt-9">Зарегистрироваться</Button>
+            </form>
+            </div>:<div className="login-inner">
+              <h3 className="login__title lg:text-title text-dark font-serif font-semibold text-center">Вход</h3>
+            <form className="login__form">
+            <label htmlFor="email" className="w-full deliver__user__form__info text-normal font-serif font-medium text-dark mt-6 block">
+            E-mail
+                <CustomInput className="w-full deliver__user__input mt-2" id={"email"} type={"email"} placeholder={"example@gmail.com"} required={true}/>
+              </label>
+              <label htmlFor="password" className="w-full deliver__user__form__info text-normal font-serif font-medium text-dark mt-6 block">
+              Пароль
+                <CustomInput className="w-full deliver__user__input mt-2" id={"password"} type={"password"} placeholder={"jock1323"} required={true}/>
+              </label>
+              <Button className="w-full mt-9">Войти</Button>
+            </form>
+              <Button className="w-full mt-3 create-profile" onClick={()=>setRegister(!register)}>Создать учетную запись</Button>
+            </div>
+            }
+          </Modal>:""
+        }
       </header>
     </>
   );

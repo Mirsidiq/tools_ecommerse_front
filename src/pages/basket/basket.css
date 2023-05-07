@@ -11,6 +11,7 @@ line-height: 58px;
 .basket-left{
   padding: 16px;
   width: 278px;
+  max-height: 400px;
   border: 1px solid #F6F6F6;
 }
 .basket-left__payment{
@@ -40,7 +41,7 @@ font-weight: 700;
 line-height: 28px;
 }
 .basket-card__count{
-  width: 160px;
+  width: 160px !important;
 }
 .basket-card__content{
   /* width: 100%; */
@@ -48,5 +49,5 @@ line-height: 28px;
 }
 .basket-card__delete__btn{
   width: 262px;
-  border: 1px solid #F6F6F6;
+  border: 1px solid #D1D1D3;
 }

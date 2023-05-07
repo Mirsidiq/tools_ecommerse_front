@@ -82,7 +82,17 @@
 .mobile-line {
   height: 1px;
 }
-
+.login{
+  width: 376px !important;
+  height: 490px !important;
+}
+.register{
+  height: 430px !important;
+}
+.create-profile{
+  background-color: transparent !important;
+  border: 1px solid #D1D1D3;
+}
 @media only screen and (min-width: 768px) {
   .header-top {
     background-color: #f6f6f6;

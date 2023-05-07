@@ -1,0 +1,22 @@
+.deliver__confirm__btn{
+font-family: Manrope !important;
+font-size: 18px !important;
+font-weight: 500 !important;
+line-height: 24px !important;
+  background-color: #FCEC41 !important;
+  color: #171B24 !important;
+}
+.deliver-right{
+  border:1px solid #F6F6F6;
+}
+.deliver-success{
+  display: none;
+}
+.deliver-success-active{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* .deliver__user__input{
+  margin-top: 8px !important;
+} */
