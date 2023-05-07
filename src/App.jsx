@@ -7,9 +7,31 @@ import { Route,Router,Routes } from "react-router-dom"
 import Products from "./pages/products/products"
 import SingleProduct from "./pages/singleProduct/SingleProduct"
 import Basket from "./pages/basket/basket"
+import { FormControl, InputLabel, MenuItem, Select } from "@mui/material"
+import { useState } from "react"
 function App() {
+  const [age, setAge] = useState('');
+
+  const handleChange = (event) => {
+    setAge(event.target.value);
+  };
   return (
     <>
+    {/* <FormControl fullWidth>
+  <InputLabel id="demo-simple-select-label">Age</InputLabel>
+  <Select
+    labelId="demo-simple-select-label"
+    id="demo-simple-select"
+    value={age}
+    label="Age"
+    onChange={handleChange}
+  >
+    <MenuItem value={10}>Ten</MenuItem>
+    <MenuItem value={20}>Twenty</MenuItem>
+    <MenuItem value={30}>Thirty</MenuItem>
+  </Select>
+</FormControl> */}
+
     <Header/>
     <Routes>
       <Route element={<Hero/>} path="/"/>
