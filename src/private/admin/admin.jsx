@@ -2,22 +2,47 @@ import { Route, Routes } from "react-router-dom";
 import "./admin.css"
 import { useState } from "react";
 import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import Menu from '@mui/material/Menu';
+import MenuIcon from '@mui/icons-material/Menu';
+import Avatar from '@mui/material/Avatar';
+import Tooltip from '@mui/material/Tooltip';
+import MenuItem from '@mui/material/MenuItem';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Users from "../users/users";
+import { NavLink } from "react-router-dom";
+import AllOrders from "../allOrders/allOrders";
+
+const pages = ['users', 'orders', 'products','categories'];
 const Admin = () => {
   const theme = createTheme();
   const [token,setToken]=useState(false)
+  const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+  const handleOpenNavMenu = (event) => {
+    setAnchorElNav(event.currentTarget);
+  };
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
+  };
+
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
+  };
+
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -29,25 +54,24 @@ const Admin = () => {
   return <>
   {
    token ? <div className="admin">
-    <div className="container">
-        <h1>admin page</h1>
-    </div>
+    <nav className="admin__nav w-full bg-light py-3">
+     <div className="container">
+     <ul className="admin__nav__list">
+        <li className="admin__nav__item">
+          <NavLink to={"admin/users"} className="admin__nav__link text-dark text-normal font-serif font-medium">Users</NavLink>
+          <NavLink to={"admin/orders"} className="admin__nav__link text-dark text-normal font-serif font-medium ms-4">Orders</NavLink>
+          <NavLink to={"admin/products"} className="admin__nav__link text-dark text-normal font-serif font-medium ms-4">Product</NavLink>
+          <NavLink to={"admin/categories"} className="admin__nav__link text-dark text-normal font-serif font-medium ms-4">Categories</NavLink>
+        </li>
+      </ul>
+     </div>
+    </nav>
+    <Routes>
+      <Route element={<Users/>} path="admin/users"/>
+      <Route element={<AllOrders/>} path="admin/orders"/>
+    </Routes>
   </div>
   :
-  // <div className="login-inner">
-  //       <h3 className="login__title lg:text-title text-dark font-serif font-semibold text-center">Вход</h3>
-  //     <form className="login__form">
-  //     <label htmlFor="email" className="w-full deliver__user__form__info text-normal font-serif font-medium text-dark mt-6 block">
-  //     E-mail
-  //         <CustomInput className="w-full deliver__user__input mt-2" id={"email"} type={"email"} placeholder={"example@gmail.com"} required={true}/>
-  //       </label>
-  //       <label htmlFor="password" className="w-full deliver__user__form__info text-normal font-serif font-medium text-dark mt-6 block">
-  //       Пароль
-  //         <CustomInput className="w-full deliver__user__input mt-2" id={"password"} type={"password"} placeholder={"jock1323"} required={true}/>
-  //       </label>
-  //       <Button className="w-full mt-9" onClick={()=>setToken(true)}>Войти</Button>
-  //     </form>
-  //     </div>
   <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
