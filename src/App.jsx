@@ -8,6 +8,7 @@ import Products from "./pages/products/products"
 import SingleProduct from "./pages/singleProduct/SingleProduct"
 import Basket from "./pages/basket/basket"
 import Deliver from "./pages/deliver/deliver"
+import Profile from "./pages/profile/profile"
 function App() {
   return (
     <>
@@ -20,6 +21,7 @@ function App() {
       <Route element={<SingleProduct/>} path="/single-product"/>
       <Route element={<Basket/>} path="/basket"/>
       <Route element={<Deliver/>} path="/deliver"/>
+      <Route element={<Profile/>} path="/profile"/>
     </Routes>
     <Footer/>
     </>

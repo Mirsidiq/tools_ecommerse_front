@@ -292,7 +292,7 @@ const Header = () => {
                     Заказы
                   </span>
                 </div>
-                <div className="header-user__action inline-flex items-center flex-col">
+                <div className="header-user__action inline-flex items-center flex-col" onClick={()=>navigate("/basket")}>
                   <img src={basketLogo} alt="basket logo" />
                   <span className="header-user__action__txt text-black font-medium">
                     Корзина
@@ -439,7 +439,7 @@ const Header = () => {
               Пароль
                 <CustomInput className="w-full deliver__user__input mt-2" id={"password"} type={"password"} placeholder={"jock1323"} required={true}/>
               </label>
-              <Button className="w-full mt-9">Войти</Button>
+              <Button className="w-full mt-9" onClick={()=>navigate("/profile")}>Войти</Button>
             </form>
               <Button className="w-full mt-3 create-profile" onClick={()=>setRegister(!register)}>Создать учетную запись</Button>
             </div>
