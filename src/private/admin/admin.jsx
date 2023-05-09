@@ -21,7 +21,9 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Users from "../users/users";
 import { NavLink } from "react-router-dom";
 import AllOrders from "../allOrders/allOrders";
-
+import AllProducts from "../allProducts/allProducts";
+import AllCategories from "../allCategories/allCategories";
+import AllSubCategories from "../allSubcategories/allSubcategories";
 const pages = ['users', 'orders', 'products','categories'];
 const Admin = () => {
   const theme = createTheme();
@@ -62,6 +64,7 @@ const Admin = () => {
           <NavLink to={"admin/orders"} className="admin__nav__link text-dark text-normal font-serif font-medium ms-4">Orders</NavLink>
           <NavLink to={"admin/products"} className="admin__nav__link text-dark text-normal font-serif font-medium ms-4">Product</NavLink>
           <NavLink to={"admin/categories"} className="admin__nav__link text-dark text-normal font-serif font-medium ms-4">Categories</NavLink>
+          <NavLink to={"admin/subcategories"} className="admin__nav__link text-dark text-normal font-serif font-medium ms-4">Subcategories</NavLink>
         </li>
       </ul>
      </div>
@@ -69,6 +72,9 @@ const Admin = () => {
     <Routes>
       <Route element={<Users/>} path="admin/users"/>
       <Route element={<AllOrders/>} path="admin/orders"/>
+      <Route element={<AllProducts/>} path="admin/products"/>
+      <Route element={<AllCategories/>} path="admin/categories"/>
+      <Route element={<AllSubCategories/>} path="admin/subcategories"/>
     </Routes>
   </div>
   :
