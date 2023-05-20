@@ -31,6 +31,7 @@ transform: translateY(-50%);
 .category__card__item:hover{
   font-weight: 600;
   transition: all .3s ease;
+  cursor: pointer;
 }
 .category__card__item+.category__card__item{
   margin-top: 12px;

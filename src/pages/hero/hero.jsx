@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -18,9 +18,12 @@ import categoryImg from "../../assets/img/category-img.png";
 import clientAvatar from "../../assets/img/client-avatar.svg";
 import doubleQuote from "../../assets/img/quote.svg";
 import Button from "../../components/button/button";
+import { useNavigate } from "react-router-dom";
 const Hero = () => {
+  const [categories,setCategories]=useState([])
   const swiperRef = useRef();
   const swiperRefClient = useRef();
+  const navigate=useNavigate()
   const [getWindow, setWindow] = useState(window.innerWidth);
   window.addEventListener("resize", () => {
     setWindow(window.innerWidth);
@@ -54,6 +57,11 @@ const Hero = () => {
       slidesPerView: 1,
     },
   };
+  useEffect(()=>{
+    const allCategories=fetch("http://localhost:8080/categories")
+    .then(res=>res.json())
+    .then(data=>setCategories(data.data))
+  },[])
   return (
     <>
       <section className="hero pt-3">
@@ -432,7 +440,7 @@ const Hero = () => {
             <h3 className="discount-top__title lg:text-title text-dark font-semibold font-serif">
               Популярные категории
             </h3>
-            <span className="discount__see__more  items-center  md:inline-flex">
+            <span className="discount__see__more  items-center  md:inline-flex" onClick={()=>navigate("/categories")}>
               <span className="discount__see__more__txt  me-2 text-extra-dark text-inner font-medium font-serif">
                 Все категории
               </span>
@@ -443,69 +451,23 @@ const Hero = () => {
               />
             </span>
           </div>
-          <div className="popular-categories__wrapper grid grid-cols-2 gap-5 md:grid-cols-3 md:gap-4 lg:grid-cols-4 xl:grid-cols-6">
+          {
+            categories.map(item=>(
+              <div className="popular-categories__wrapper grid grid-cols-2 gap-5 md:grid-cols-3 md:gap-4 lg:grid-cols-4 xl:grid-cols-6">
             <div className="popular-category relative flex flex-col items-center">
               <span className="popular-category__name text-inner text-dark font-serif font-medium mt-3">
-                Душевые
+                {item.name}
               </span>
               <img
-                src={categoryImg}
-                alt="category img"
-                className="popular-category__img mt-4"
-              />
-            </div>
-            <div className="popular-category relative flex flex-col items-center">
-              <span className="popular-category__name text-inner text-dark font-serif font-medium mt-3">
-                Душевые
-              </span>
-              <img
-                src={categoryImg}
-                alt="category img"
-                className="popular-category__img mt-4"
-              />
-            </div>
-            <div className="popular-category relative flex flex-col items-center">
-              <span className="popular-category__name text-inner text-dark font-serif font-medium mt-3">
-                Душевые
-              </span>
-              <img
-                src={categoryImg}
-                alt="category img"
-                className="popular-category__img mt-4"
-              />
-            </div>
-            <div className="popular-category relative flex flex-col items-center">
-              <span className="popular-category__name text-inner text-dark font-serif font-medium mt-3">
-                Душевые
-              </span>
-              <img
-                src={categoryImg}
-                alt="category img"
-                className="popular-category__img mt-4"
-              />
-            </div>
-            <div className="popular-category relative flex flex-col items-center">
-              <span className="popular-category__name text-inner text-dark font-serif font-medium mt-3">
-                Душевые
-              </span>
-              <img
-                src={categoryImg}
-                alt="category img"
-                className="popular-category__img mt-4"
-              />
-            </div>
-            <div className="popular-category relative flex flex-col items-center">
-              <span className="popular-category__name text-inner text-dark font-serif font-medium mt-3">
-                Душевые
-              </span>
-              <img
-                src={categoryImg}
+                src={item.thumbnail}
                 alt="category img"
                 className="popular-category__img mt-4"
               />
             </div>
           </div>
-          <span className="discount__see__more discount__see__more__bottom mt-4">
+            ))
+          }
+          <span className="discount__see__more discount__see__more__bottom mt-4" onClick={()=>navigate("/categories")}>
             <span className="discount__see__more__txt  me-2 text-extra-dark text-inner font-medium font-serif">
               Все категории
             </span>
