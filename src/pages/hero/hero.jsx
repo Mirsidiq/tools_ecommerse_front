@@ -21,6 +21,8 @@ import Button from "../../components/button/button";
 import { useNavigate } from "react-router-dom";
 const Hero = () => {
   const [categories,setCategories]=useState([])
+  const [products,setProducts]=useState([])
+  const [discountedProducts,setDiscountedProducts]=useState([])
   const swiperRef = useRef();
   const swiperRefClient = useRef();
   const navigate=useNavigate()
@@ -61,6 +63,12 @@ const Hero = () => {
     const allCategories=fetch("http://localhost:8080/categories")
     .then(res=>res.json())
     .then(data=>setCategories(data.data))
+    const allProducts=fetch("http://localhost:8080/products")
+    .then(res=>res.json())
+    .then(data=>setProducts(data.data))
+    const discountProducts=fetch("http://localhost:8080/products/discounted")
+    .then(res=>res.json())
+    .then(data=>setDiscountedProducts(data.data))
   },[])
   return (
     <>
@@ -137,7 +145,49 @@ const Hero = () => {
           </div>
           <div className="discount-cards mt-4">
             <div className="discount-card__desktop grid grid-cols-2 gap-4">
-              <div className="discount-card flex justify-between ">
+              {
+                discountedProducts.length>0 ?
+                discountedProducts.map(product =>(
+                  <div key={product.product_id} className="discount-card flex justify-between ">
+                <div className="discount-card__header relative">
+                  <img
+                    src={product.thumbnail}
+                    alt="product img"
+                    className="discount-card__header__img"
+                  />
+                  <span className="discount__number text-center text-normal text-extra-dark font-serif font-medium">
+                    {
+                      product.discount
+                    }
+                  </span>
+                </div>
+                <div className="discount-card__body">
+                  <p className="discount-card__body__txt text-normal text-extra-dark font-serif font-medium">
+                    {
+                      product.name
+                    }
+                  </p>
+                  <div className="discount__price__wrapper flex mt-3 mb-4">
+                    <span className="discount-card__body__price text-extra-dark font-bold font-serif">
+                      {
+                        Math.floor(product.price*product.discount)
+                      }
+                    </span>
+                    <span className="discount-card__body__old__price ms-2 font-serif text-normal font-medium">
+                      {
+                        product.price
+                      }
+                    </span>
+                  </div>
+                  <div className="discount-card__footer mt-2">
+                    <Button className="discount-card__btn">В корзину</Button>
+                  </div>
+                </div>
+              </div>
+                ))
+                :<p style={{"color":"red"}} className="text-extra-dark font-serif font-bold text-title text-center my-4">Discounted products not found</p>
+              }
+              {/* <div className="discount-card flex justify-between ">
                 <div className="discount-card__header relative">
                   <img
                     src={discountDesktop}
@@ -223,36 +273,7 @@ const Hero = () => {
                     <Button className="discount-card__btn">В корзину</Button>
                   </div>
                 </div>
-              </div>
-              <div className="discount-card flex justify-between ">
-                <div className="discount-card__header relative">
-                  <img
-                    src={discountDesktop}
-                    alt="product img"
-                    className="discount-card__header__img"
-                  />
-                  <span className="discount__number text-center text-normal text-extra-dark font-serif font-medium">
-                    −25%
-                  </span>
-                </div>
-                <div className="discount-card__body">
-                  <p className="discount-card__body__txt text-normal text-extra-dark font-serif font-medium">
-                    Рубероид РКП-350 ТУ, размер материала 1 х 10 м (10м2, 1
-                    рулон)
-                  </p>
-                  <div className="discount__price__wrapper flex mt-3 mb-4">
-                    <span className="discount-card__body__price text-extra-dark font-bold font-serif">
-                      449 ₽
-                    </span>
-                    <span className="discount-card__body__old__price ms-2 font-serif text-normal font-medium">
-                      499 ₽
-                    </span>
-                  </div>
-                  <div className="discount-card__footer mt-2">
-                    <Button className="discount-card__btn">В корзину</Button>
-                  </div>
-                </div>
-              </div>
+              </div> */}
             </div>
             <div className="discount-cards__mobile grid grid-cols-2 gap-4">
               <div className="discount-card pb-4">
@@ -440,7 +461,7 @@ const Hero = () => {
             <h3 className="discount-top__title lg:text-title text-dark font-semibold font-serif">
               Популярные категории
             </h3>
-            <span className="discount__see__more  items-center  md:inline-flex" onClick={()=>navigate("/categories")}>
+            <span className="discount__see__more cursor-pointer  items-center  md:inline-flex" onClick={()=>navigate("/categories")}>
               <span className="discount__see__more__txt  me-2 text-extra-dark text-inner font-medium font-serif">
                 Все категории
               </span>
@@ -451,10 +472,10 @@ const Hero = () => {
               />
             </span>
           </div>
-          {
-            categories.map(item=>(
               <div className="popular-categories__wrapper grid grid-cols-2 gap-5 md:grid-cols-3 md:gap-4 lg:grid-cols-4 xl:grid-cols-6">
-            <div className="popular-category relative flex flex-col items-center">
+            {
+              categories.slice(0,9).map((item,index)=>(
+                <div key={index} className="popular-category relative flex flex-col items-center">
               <span className="popular-category__name text-inner text-dark font-serif font-medium mt-3">
                 {item.name}
               </span>
@@ -464,9 +485,9 @@ const Hero = () => {
                 className="popular-category__img mt-4"
               />
             </div>
+              ))
+            }
           </div>
-            ))
-          }
           <span className="discount__see__more discount__see__more__bottom mt-4" onClick={()=>navigate("/categories")}>
             <span className="discount__see__more__txt  me-2 text-extra-dark text-inner font-medium font-serif">
               Все категории
@@ -487,7 +508,38 @@ const Hero = () => {
             </h3>
           </div>
           <div className="popular-products__wrapper grid grid-cols-2 gap-5 md:gap-4 lg:grid-cols-3 xl:grid-cols-4">
-            <div className="popular-product">
+           {
+            products.length > 0 ?
+              products.map(item =>(
+                <div key={item.id} className="popular-product">
+                <div className="popular-product__header flex justify-center">
+                  <picture className="popular-product__img">
+                    <source media="(min-width:576px)" srcSet={item.thumbnail} />
+                    <source media="(min-width:360px)" srcSet={popularMobile} />
+                    <img src={item.thumbnail} alt="product img" />
+                  </picture>
+                </div>
+                <div className="popular-product__body md:p-4 sm:p-2">
+                  <p className="popular-product__txt  text-normal text-extra-dark font-serif font-medium">
+                    {
+                      item.name
+                    }
+                  </p>
+                  <span className="popular-product__price text-extra-dark font-bold font-serif mt-3 inline-block">
+                  {
+                    item.price
+                  }
+                  </span>
+                </div>
+                <div className="popular-product__footer mt-2 px-2 pb-4 md:px-4">
+                  <Button className="popular-product__btn">В корзину</Button>
+                </div>
+              </div>
+              ))
+             :
+             <p className="text-center font-serif font-bold text-title">Products not found</p>
+           }
+            {/* <div className="popular-product">
               <div className="popular-product__header flex justify-center">
                 <picture className="popular-product__img">
                   <source media="(min-width:576px)" srcSet={popularDesktop} />
@@ -546,27 +598,7 @@ const Hero = () => {
               <div className="popular-product__footer mt-2 px-2 pb-4 md:px-4">
                 <Button className="popular-product__btn">В корзину</Button>
               </div>
-            </div>
-            <div className="popular-product">
-              <div className="popular-product__header flex justify-center">
-                <picture className="popular-product__img">
-                  <source media="(min-width:576px)" srcSet={popularDesktop} />
-                  <source media="(min-width:360px)" srcSet={popularMobile} />
-                  <img src={popularDesktop} alt="product img" />
-                </picture>
-              </div>
-              <div className="popular-product__body md:p-4 sm:p-2">
-                <p className="popular-product__txt  text-normal text-extra-dark font-serif font-medium">
-                  Керамогранит Yasmin 598х185 коричневый C-YA4M112D
-                </p>
-                <span className="popular-product__price text-extra-dark font-bold font-serif mt-3 inline-block">
-                  899 ₽
-                </span>
-              </div>
-              <div className="popular-product__footer mt-2 px-2 pb-4 md:px-4">
-                <Button className="popular-product__btn">В корзину</Button>
-              </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>

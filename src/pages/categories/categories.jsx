@@ -29,7 +29,7 @@ const Categories = () => {
           <ul className="category__card__body mt-5">
           {
             item.subcategories.map(subcategory =>(
-              <li className="category__card__item" onClick={()=>navigate("/products")}>{subcategory.name}</li>
+              <li  className="category__card__item"  onClick={()=>navigate(`/products/${subcategory.subcategory_id}`)}>{subcategory.name} {subcategory.subcategory_id}</li>
             ))
           }
           </ul>

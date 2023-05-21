@@ -5,10 +5,28 @@ import product from "../../assets/img/product.png"
 import productMobile from "../../assets/img/product-mobile.png"
 import nextArrow from "../../assets/img/next-arrow.svg"
 import prevArrow from "../../assets/img/prev-arrow.svg"
-import { useEffect } from "react"
-import { useNavigate } from "react-router-dom"
-const Products = () => {
+import { useEffect, useState } from "react"
+import { useNavigate, useParams } from "react-router-dom"
+const Products = (props) => {
+  const{basket,setBasket}=props
+  const addBasket=(productId)=>{
+    fetch(`http://localhost:8080/product/${productId}`)
+    .then((res)=>res.json())
+    .then(data=>{
+      if(data.data.product_id){
+        if(!basket.find(e=>e.product_id==data.data.product_id)){
+          setBasket([...basket,data.data])
+        }
+      }
+    })
+  }
+  useEffect(() =>{
+  window.localStorage.setItem("basket",JSON.stringify(basket))
+  },[basket]);
   const navigate=useNavigate()
+  const params=useParams()
+  const {id}=params
+  const [subcategory,setSubcategory]=useState({})
 useEffect(()=>{
   const productsFilters=document.querySelectorAll('.product__cards__filter__item')
   const addActive=()=>{
@@ -27,10 +45,18 @@ useEffect(()=>{
   }
   addActive()
 },[])
+useEffect(()=>{
+  fetch(`http://localhost:8080/subcategory/${id}`)
+  .then(res=>res.json())
+  .then(data=>setSubcategory(data.data))
+},[])
   return <>
   <div className="products py-5 md:py-8">
     <div className="container">
-      <h2 className="products__title">Сухие смеси</h2>
+      {
+        subcategory.name ? 
+        <>
+         <h2 className="products__title">{subcategory && subcategory.name}</h2>
         <div className="products__filter__toggle w-full py-3 mt-8">
           <img src={filterLogo} alt="filter logo" />
           <span className="products__filter__toggle__txt ms-2 font-serif font-medium text-inner text-dark">Фильтры</span>
@@ -68,54 +94,28 @@ useEffect(()=>{
             <li className="product__cards__filter__item font-serif font-medium  text-normal">По алфавиту</li>    
           </ul>
           <div className=" mt-4 product__cards__wrapper grid grid-cols-2  md:grid-cols-3 lg:grid-cols-3 gap-4 md:gap-5">
-          <div className="product__card">
-              <div className="product__card__header">
-                <picture className="product__card__img">
-                  <source media="(min-width:576px)" srcSet={product}/>
-                  <source media="(min-width:360px)" srcSet={productMobile}/>
-                  <img src={product} alt="product image" />
-                </picture>
-              </div>
-              <div className="product__card__body">
-                <p className="product__card__txt text-normal font-serif font-medium text-dark">Шпатлевка масляно-клеевая 3кг Л-С</p>
-                <span className="product__card__price text-extra-dark">212 ₽</span>
-              </div>
-              <div className="product__card__footer">
-                  <Button className="product__card__add" onClick={()=>navigate("/single-product")}>В корзину</Button>
-              </div>
-          </div>
-          <div className="product__card">
-              <div className="product__card__header">
-                <picture className="product__card__img">
-                  <source media="(min-width:576px)" srcSet={product}/>
-                  <source media="(min-width:360px)" srcSet={productMobile}/>
-                  <img src={product} alt="product image" />
-                </picture>
-              </div>
-              <div className="product__card__body">
-                <p className="product__card__txt text-normal font-serif font-medium text-dark">Шпатлевка масляно-клеевая 3кг Л-С</p>
-                <span className="product__card__price text-extra-dark">212 ₽</span>
-              </div>
-              <div className="product__card__footer">
-                  <Button className="product__card__add">В корзину</Button>
-              </div>
-          </div>
-          <div className="product__card">
-              <div className="product__card__header">
-                <picture className="product__card__img">
-                  <source media="(min-width:576px)" srcSet={product}/>
-                  <source media="(min-width:360px)" srcSet={productMobile}/>
-                  <img src={product} alt="product image" />
-                </picture>
-              </div>
-              <div className="product__card__body">
-                <p className="product__card__txt text-normal font-serif font-medium text-dark">Шпатлевка масляно-клеевая 3кг Л-С</p>
-                <span className="product__card__price text-extra-dark">212 ₽</span>
-              </div>
-              <div className="product__card__footer">
-                  <Button className="product__card__add">В корзину</Button>
-              </div>
-          </div>
+        {
+          subcategory.products?.length ? 
+          subcategory.products.map(item =>(
+            <div key={item.product_id} className="product__card">
+            <div className="product__card__header">
+              <picture className="product__card__img">
+                <source media="(min-width:576px)" srcSet={item.thumbnail}/>
+                <source media="(min-width:360px)" srcSet={productMobile}/>
+                <img src={item.thumbnail} alt="product image" />
+              </picture>
+            </div>
+            <div className="product__card__body">
+              <p className="product__card__txt text-normal font-serif font-medium text-dark" onClick={()=>navigate(`/single-product/${item.product_id}`)}>{item.name}</p>
+              <span className="product__card__price text-extra-dark">{item.price}</span>
+            </div>
+            <div className="product__card__footer">
+                <Button className="product__card__add" onClick={()=>addBasket(item.product_id)}>В корзину</Button>
+            </div>
+        </div>
+          ))
+          :<p className="text-extra-dark text-title font-serif font-bold">Products not found</p>
+        }
           </div>
         </div>
       </div>
@@ -130,6 +130,10 @@ useEffect(()=>{
         </ul>
         <div className="product__pagination__btn inline-flex justify-center items-center ms-1"><img src={nextArrow} alt="arrow next"  /></div>
       </div>
+        </>
+        :<p className="text-center text-title font-serif font-bold text-dark">Subcategory not found</p>
+      }
+     
     </div>
   </div>
   </>;

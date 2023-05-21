@@ -10,8 +10,12 @@ import Basket from "./pages/basket/basket";
 import Deliver from "./pages/deliver/deliver";
 import Profile from "./pages/profile/profile";
 import Admin from "./private/admin/admin";
+import { useEffect, useState } from "react";
 function App() {
   const host = "http://127.0.0.1:5173";
+  const [basket,setBasket]=useState(JSON.parse(window.localStorage.getItem("basket")) || [])
+  // useEffect(()=>{
+  // },[basket])
   const admin = "/admin";
   return (
     <>
@@ -25,8 +29,8 @@ function App() {
             <Route element={<Hero />} path="/" />
             <Route element={<Contact />} path="/contact" />
             <Route element={<Categories />} path="/categories" />
-            <Route element={<Products />} path="/products" />
-            <Route element={<SingleProduct />} path="/single-product" />
+            <Route element={<Products  basket={basket} setBasket={setBasket} />} path="/products/:id" />
+            <Route element={<SingleProduct />} path="/single-product/:id" />
             <Route element={<Basket />} path="/basket" />
             <Route element={<Deliver />} path="/deliver" />
             <Route element={<Profile />} path="/profile" />

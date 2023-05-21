@@ -1,9 +1,11 @@
 import { useState } from "react";
 import "./counter.css"
-const Counter = ({className}) => {
+const Counter = ({className,singleProductCounter}) => {
   const [count, setCount] = useState(1);
   const inc = () => setCount(count + 1);
   const dec = () => (count > 1 ? setCount(count - 1) : setCount(1));
+  console.log(singleProductCounter);
+  singleProductCounter ? singleProductCounter(count):""
   return (
     <>
       <div className={`inline-flex counter`}>
