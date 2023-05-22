@@ -6,18 +6,30 @@ import productImg from "../../assets/img/popular-product__mobile.png"
 import { useEffect, useState } from "react";
 import Modal from "../../components/modal/modal";
 import Counter from "../../components/counter/counter.";
-const SingleProduct = () => {
+const SingleProduct = (props) => {
+  const { basket, setBasket } = props;
   const [singleProductCounter,setSingleProductCounter]=useState(1)
-  const [product,setProduct]=useState([])
+  const [product,setProduct]=useState({})
+  const tempProduct={}
   const [open,setOpen]=useState(false)
   const navigate=useNavigate()
   const params=useParams()
   const {id}=params
+  const addBasket = () => {
+    if (!basket.find((e) => e.product_id == product.product_id)) {
+      const newProduct=Object.assign(tempProduct,product)
+      newProduct.count=singleProductCounter
+      setBasket([...basket, newProduct]);
+    }
+}
   useEffect(()=>{
     fetch(`http://localhost:8080/product/${id}/`)
     .then(res=>res.json())
     .then(data=>setProduct(data.data))
   },[])
+  useEffect(() => {
+    window.localStorage.setItem("basket", JSON.stringify(basket));
+  }, [basket]);
   return <>
     <div className="single-product py-10">
       <div className="container">
@@ -35,7 +47,10 @@ const SingleProduct = () => {
               {product.price}
               </span>
               <div className="single-product__btns flex items-center mt-6">
-                <Button className="single-product__add me-4" onClick={()=>{setOpen(true)}}>В корзину</Button>
+                <Button className="single-product__add me-4" onClick={()=>{
+                  addBasket()
+                  setOpen(true)
+                  }}>В корзину</Button>
                 <Counter  singleProductCounter={setSingleProductCounter}/>
               </div>
             </div>

@@ -30,8 +30,8 @@ function App() {
             <Route element={<Contact />} path="/contact" />
             <Route element={<Categories />} path="/categories" />
             <Route element={<Products  basket={basket} setBasket={setBasket} />} path="/products/:id" />
-            <Route element={<SingleProduct />} path="/single-product/:id" />
-            <Route element={<Basket />} path="/basket" />
+            <Route element={<SingleProduct  basket={basket} setBasket={setBasket} />} path="/single-product/:id" />
+            <Route element={<Basket basket={basket} setBasket={setBasket} />} path="/basket" />
             <Route element={<Deliver />} path="/deliver" />
             <Route element={<Profile />} path="/profile" />
           </Routes>
