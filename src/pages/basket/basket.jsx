@@ -7,7 +7,7 @@ import Counter from "../../components/counter/counter."
 import { useNavigate } from "react-router-dom"
 const Basket = (props) => {
   const navigate=useNavigate()
-  const {basket,setBasket}=props
+  const [basket,setBasket]=useState(JSON.parse(window.localStorage.getItem("basket")) || [])
   const [totalCount,setTotalCount]=useState(1)
   const [totalPrice,setTotalPrice]=useState()
   const countTotalOrder=()=>{
@@ -15,20 +15,22 @@ const Basket = (props) => {
     let totalPrice=0
     for(let item of basket) {
       sum+=item.count
-      totalPrice+=item.price
+      totalPrice+=item.price*item.count
     }
     setTotalCount(sum)
     setTotalPrice(totalPrice)
 }
 const deleteFromBasket=(productId)=>{
+  window.localStorage.removeItem("basket")
   setBasket(basket.filter(item=>item.product_id!=productId))
 }
+
   useEffect(()=>{
     countTotalOrder()
-  },[totalCount])
-  console.log(totalCount);
-  return <>
-  <div className="basket lg:pb-20">
+    window.localStorage.setItem("basket",JSON.stringify(basket))
+  },[basket])
+  console.log(basket);
+  return   <div className="basket lg:pb-20">
     <div className="container">
       <div className="basket-hero relative lg:my-10">
         <img src={basketImg} alt="basket main img" />
@@ -74,12 +76,14 @@ const deleteFromBasket=(productId)=>{
                 </div>
                 <div className="basket-card__content ms-4 relative">
                   <p className="basket-card__desc text-normal font-serif font-medium text-dark">Код товара: <br /> <span className="basket-card__code">34078988-0047</span></p>
-                  <div className="single-product__btn__actions inline-flex mt-3">
-                    <div className="text-inner text-extra-dark font-serif font-medium inline-flex items-center justify-center single-product__count basket-card__delete__btn absolute bottom-0">Удалить товар</div>
+                  <div className="single-product__btn__actions inline-flex mt-3" onClick={()=>{
+                    deleteFromBasket(item.product_id)
+                  }}>
+                    <p className="text-inner text-extra-dark font-serif font-medium inline-flex items-center justify-center single-product__count basket-card__delete__btn absolute bottom-0">Удалить товар</p>
+                  </div>
                   </div>
                 </div>
               </div>
-            </div>
             ))
              :
               <p className="text-title text-dark text-center font-serif font-bold">Basket empty</p>
@@ -108,7 +112,7 @@ const deleteFromBasket=(productId)=>{
       </div>
     </div>
   </div>
-  </>;
+  
 }
  
 export default Basket;

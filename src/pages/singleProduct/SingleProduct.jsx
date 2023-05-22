@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import Modal from "../../components/modal/modal";
 import Counter from "../../components/counter/counter.";
 const SingleProduct = (props) => {
-  const { basket, setBasket } = props;
+  const [basket,setBasket]=useState(JSON.parse(window.localStorage.getItem("basket")) || [])
   const [singleProductCounter,setSingleProductCounter]=useState(1)
   const [product,setProduct]=useState({})
   const tempProduct={}
@@ -16,10 +16,17 @@ const SingleProduct = (props) => {
   const params=useParams()
   const {id}=params
   const addBasket = () => {
-    if (!basket.find((e) => e.product_id == product.product_id)) {
-      const newProduct=Object.assign(tempProduct,product)
-      newProduct.count=singleProductCounter
-      setBasket([...basket, newProduct]);
+    const foundedProduct=basket.find((e) => e.product_id == product.product_id)
+    if(foundedProduct) {
+      const temp=basket.filter(e=>e.product_id!=foundedProduct.product_id)
+      foundedProduct.count=singleProductCounter
+      setBasket([...temp, foundedProduct]);
+    }
+    else{
+      const tempProduct={}
+            const newProduct=Object.assign(tempProduct,product)
+          newProduct.count=singleProductCounter
+            setBasket([...basket, newProduct]);
     }
 }
   useEffect(()=>{

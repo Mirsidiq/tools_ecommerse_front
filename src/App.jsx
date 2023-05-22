@@ -13,7 +13,7 @@ import Admin from "./private/admin/admin";
 import { useEffect, useState } from "react";
 function App() {
   const host = "http://127.0.0.1:5173";
-  const [basket,setBasket]=useState(JSON.parse(window.localStorage.getItem("basket")) || [])
+  // const [basket,setBasket]=useState(JSON.parse(window.localStorage.getItem("basket")) || [])
   // useEffect(()=>{
   // },[basket])
   const admin = "/admin";
@@ -29,9 +29,9 @@ function App() {
             <Route element={<Hero />} path="/" />
             <Route element={<Contact />} path="/contact" />
             <Route element={<Categories />} path="/categories" />
-            <Route element={<Products  basket={basket} setBasket={setBasket} />} path="/products/:id" />
-            <Route element={<SingleProduct  basket={basket} setBasket={setBasket} />} path="/single-product/:id" />
-            <Route element={<Basket basket={basket} setBasket={setBasket} />} path="/basket" />
+            <Route element={<Products  />} path="/products/:id" />
+            <Route element={<SingleProduct   />} path="/single-product/:id" />
+            <Route element={<Basket />} path="/basket" />
             <Route element={<Deliver />} path="/deliver" />
             <Route element={<Profile />} path="/profile" />
           </Routes>

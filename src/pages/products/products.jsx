@@ -8,21 +8,21 @@ import prevArrow from "../../assets/img/prev-arrow.svg";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 const Products = (props) => {
-  const { basket, setBasket } = props;
+  const [basket,setBasket]=useState(JSON.parse(window.localStorage.getItem("basket")) || [])
   const addBasket = (productId) => {
     fetch(`http://localhost:8080/product/${productId}`)
       .then((res) => res.json())
       .then((data) => {
         if (data.data.product_id) {
           if (!basket.find((e) => e.product_id == data.data.product_id)) {
-            setBasket([...basket, data.data]);
+            const tempProduct={}
+            const newProduct=Object.assign(tempProduct,data.data)
+          newProduct.count=1
+            setBasket([...basket, newProduct]);
           }
         }
-      });
+      })
   };
-  useEffect(() => {
-    window.localStorage.setItem("basket", JSON.stringify(basket));
-  }, [basket]);
   const navigate = useNavigate();
   const params = useParams();
   const { id } = params;
@@ -52,6 +52,9 @@ const Products = (props) => {
       .then((res) => res.json())
       .then((data) => setSubcategory(data.data));
   }, []);
+  useEffect(() => {
+    window.localStorage.setItem("basket",JSON.stringify(basket))
+  }, [basket]);
   return (
     <>
       <div className="products py-5 md:py-8">
