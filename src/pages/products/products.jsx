@@ -8,6 +8,9 @@ import prevArrow from "../../assets/img/prev-arrow.svg";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 const Products = (props) => {
+  const [min,setMin]=useState()
+  const [max,setMax]=useState()
+  const [brand,setBrand]=useState()
   const [basket,setBasket]=useState(JSON.parse(window.localStorage.getItem("basket")) || [])
   const addBasket = (productId) => {
     fetch(`http://localhost:8080/product/${productId}`)
@@ -23,6 +26,13 @@ const Products = (props) => {
         }
       })
   };
+  const filterProductByPrice=(e)=>{
+    e.preventDefault()
+    fetch(`http://localhost:8080/products?min=${min ? min:""}&max=${max ? max:""}`)
+    .then(res=>res.json())
+    .then(data=>console.log(data))
+    .catch(err=>console.log(err))
+  }
   const navigate = useNavigate();
   const params = useParams();
   const { id } = params;
@@ -72,7 +82,7 @@ const Products = (props) => {
               </div>
               <div className="products__inner flex justify-between mt-4 lg:mt-10">
                 <div className="products__filter p-4 me-4">
-                  <form className="product__filter__form">
+                  <form className="product__filter__form" onSubmit={filterProductByPrice}>
                     <div className="product__filter__price">
                       <h2 className="product__filter__title text-inner text-extra-dark font-serif font-bold">
                         Цена
@@ -81,12 +91,16 @@ const Products = (props) => {
                         <input
                           type="number"
                           className="product__filter__input text-inner font-serif font-medium py-3 px-4"
-                          placeholder="1000"
+                          value={min}
+                          onChange={(e)=>setMin(e.target.value)}
+                          placeholder="100"
                         />
                         <input
                           type="number"
                           className="product__filter__input text-inner font-serif font-medium py-3 px-4 ms-auto"
-                          placeholder="1000"
+                          value={max}
+                          onChange={(e)=>setMax(e.target.value)}
+                          placeholder="5000"
                         />
                       </div>
                     </div>

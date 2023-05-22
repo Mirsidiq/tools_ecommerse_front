@@ -33,7 +33,7 @@ function App() {
             <Route element={<SingleProduct   />} path="/single-product/:id" />
             <Route element={<Basket />} path="/basket" />
             <Route element={<Deliver />} path="/deliver" />
-            <Route element={<Profile />} path="/profile" />
+            <Route element={<Profile />} path="/profile/:user" />
           </Routes>
           <Footer />
         </>

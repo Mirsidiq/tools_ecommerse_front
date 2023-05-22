@@ -18,6 +18,8 @@ const Header = () => {
   const [toggle, setToggle] = useState(false);
   const [login, setLogin] = useState(false);
   const [register, setRegister] = useState(false);
+  // const [email,setEmail]=useState("")
+  // const [password,setPassword]=useState("")
   const [checkPassword,setCheckPassword]=useState("")
   const[visible,setVisible]=useState(false)
   const passwordVerify=(value)=>{
@@ -28,6 +30,71 @@ const Header = () => {
    else{
     setVisible(false)
    }
+  }
+  const loginFormCheck=(e)=>{
+    e.preventDefault()
+    const email= e.target[0].value
+    const password=e.target[1].value
+    fetch("http://localhost:8080/login",{
+      method:"POST",
+      headers:{
+        "content-type":"application/json"
+      },
+      body:JSON.stringify({
+        email,
+        password
+      })
+    })
+    .then(res=>res.json())
+    .then(data=>{
+      if(data.token!="" && data.token){
+        window.localStorage.setItem("token",data.token)
+        setLogin(false)
+        navigate(`/profile/${data.token}`)
+      }
+      else{
+        console.log(data.message)
+      }
+    })
+    .catch(err=>console.log(err))
+  }
+  const registerCheck=(e)=>{
+    e.preventDefault()
+    const firstname=e.target[0].value
+    const email= e.target[1].value
+    const password=e.target[2].value
+    fetch("http://localhost:8080/register",{
+      method:"POST",
+      headers:{
+        "content-type":"application/json"
+      },
+      body:JSON.stringify({
+        firstname,
+        email,
+        password
+      })
+    })
+    .then(res=>res.json())
+    .then(data=>{
+      if(data.token!="" && data.token){
+        window.localStorage.setItem("token",data.token)
+        setLogin(false)
+        navigate(`/profile/${data.token}`)
+      }
+      else{
+        console.log(data.message)
+      }
+    })
+    .catch(err=>console.log(err))
+  }
+  const checkAccess=()=>{
+  const token=window.localStorage.getItem("token")
+  if(token=="" || !token){
+    setLogin(true)
+  }
+  else{
+    navigate(`/profile/${token}`)
+  }
   }
   const navigate=useNavigate()
   return (
@@ -280,7 +347,7 @@ const Header = () => {
                 </label>
               </form>
               <div className="header-user__actions inline-flex justify-between items-center">
-                <div className="header-user__action inline-flex items-center flex-col" onClick={()=>setLogin(true)}>
+                <div className="header-user__action inline-flex items-center flex-col" onClick={()=>checkAccess()}>
                   <img src={userLogo} alt="user avatar" />
                   <span className="header-user__action__txt text-black font-medium">
                     Профиль
@@ -402,7 +469,7 @@ const Header = () => {
             {
               register ?<div className="register-inner">
               <h3 className="register__title lg:text-title text-dark font-serif font-semibold text-center">Регистрация</h3>
-            <form className="register__form">
+            <form className="register__form" onSubmit={registerCheck}>
           <div className="grid lg:grid-cols-2 gap-4">
               <label htmlFor="username" className="w-full deliver__user__form__info text-normal font-serif font-medium text-dark mt-6 block">
             Имя
@@ -426,20 +493,20 @@ const Header = () => {
               </label>
              }
           </div>
-              <Button className={`w-full mt-9 ${visible && checkPassword!="" ? "":"hidden"}`}>Зарегистрироваться</Button>
+              <Button className={`w-full mt-9 ${visible && checkPassword!="" ? "":"hidden"}`} type="submit">Зарегистрироваться</Button>
             </form>
             </div>:<div className="login-inner">
               <h3 className="login__title lg:text-title text-dark font-serif font-semibold text-center">Вход</h3>
-            <form className="login__form">
+            <form className="login__form" onSubmit={loginFormCheck}>
             <label htmlFor="email" className="w-full deliver__user__form__info text-normal font-serif font-medium text-dark mt-6 block">
             E-mail
-                <CustomInput className="w-full deliver__user__input mt-2" id={"email"} type={"email"} placeholder={"example@gmail.com"} required={true}/>
+                <CustomInput className="w-full deliver__user__input mt-2" id={"email"} type={"email"} placeholder={"example@gmail.com"}   required={true}/>
               </label>
               <label htmlFor="password" className="w-full deliver__user__form__info text-normal font-serif font-medium text-dark mt-6 block">
               Пароль
                 <CustomInput className="w-full deliver__user__input mt-2" id={"password"} type={"password"} placeholder={"jock1323"} required={true}/>
               </label>
-              <Button className="w-full mt-9" onClick={()=>navigate("/profile")}>Войти</Button>
+              <Button className="w-full mt-9" type="submit">Войти</Button>
             </form>
               <Button className="w-full mt-3 create-profile" onClick={()=>setRegister(!register)}>Создать учетную запись</Button>
             </div>
