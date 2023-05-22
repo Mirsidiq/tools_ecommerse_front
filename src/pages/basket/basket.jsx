@@ -29,7 +29,7 @@ const deleteFromBasket=(productId)=>{
     countTotalOrder()
     window.localStorage.setItem("basket",JSON.stringify(basket))
   },[basket])
-  console.log(basket);
+
   return   <div className="basket lg:pb-20">
     <div className="container">
       <div className="basket-hero relative lg:my-10">
